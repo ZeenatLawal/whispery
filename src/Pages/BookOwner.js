@@ -11,7 +11,9 @@ import { Header } from "../components/Header";
 
 export function BookOwner() {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isMidScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <>
@@ -36,22 +38,42 @@ export function BookOwner() {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} marginTop={isSmallScreen ? "65px" : "80px"}>
-            <Grid container spacing={isSmallScreen ? 2 : 4} width="100%">
-              <Grid item xs={12} sm={6}>
+          <Grid
+            item
+            container
+            xs={12}
+            marginTop={isSmallScreen ? "65px" : "80px"}
+            alignItems="center"
+          >
+            <Grid item xs={12} md={6}>
+              <div
+                style={{
+                  width: isLgScreen && "505px",
+                }}
+              >
                 <OwnerForm />
-              </Grid>
+              </div>
+            </Grid>
 
-              <Grid item xs={12} sm={6}>
+            <Grid item xs={12} md={6}>
+              <div
+                style={{
+                  height: isSmallScreen ? "446px" : "539px",
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: isMidScreen ? "80px" : "0",
+                }}
+              >
                 <img
                   src={ownerImg}
                   alt="3D illustration of a young boy"
-                  style={{ height: isSmallScreen ? "436px" : "539px" }}
+                  style={{ width: "100%", height: "auto" }}
                 />
-              </Grid>
+              </div>
             </Grid>
           </Grid>
         </Grid>
+
         <Grid item xs={12}>
           <Button variant="contained">Continue</Button>
         </Grid>
