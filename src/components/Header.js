@@ -87,10 +87,12 @@ export function Header({ number, children }) {
           </Box>
         </Toolbar>
       </AppBar>
+
       <div
         style={{
+          paddingTop: isSmallScreen ? "90px" : "120px",
           minHeight: `calc(100vh - ${isSmallScreen ? 107 : 121}px)`,
-          margin: "81px auto",
+          margin: "81px auto 30px",
         }}
       >
         {children}

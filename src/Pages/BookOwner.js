@@ -8,6 +8,7 @@ import {
 import { OwnerForm } from "../components/OwnerForm";
 import ownerImg from "../images/ownerImg.png";
 import { Header } from "../components/Header";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export function BookOwner() {
   const theme = useTheme();
@@ -20,14 +21,11 @@ export function BookOwner() {
       <Header number={1}>
         <Grid
           container
-          style={{ width: `calc(100vw - ${isSmallScreen ? 25 : 200}px)` }}
+          style={{
+            width: `calc(100vw - ${isSmallScreen ? 25 : 200}px)`,
+          }}
         >
-          <Grid
-            item
-            xs={12}
-            textAlign="center"
-            marginTop={isSmallScreen ? "55px" : "80px"}
-          >
+          <Grid item xs={12} textAlign="center">
             <Typography
               style={{ fontWeight: 700 }}
               sx={{
@@ -74,8 +72,26 @@ export function BookOwner() {
           </Grid>
         </Grid>
 
-        <Grid item xs={12}>
-          <Button variant="contained">Continue</Button>
+        <Grid
+          container
+          justifyContent={{ xs: "center", md: "flex-end" }}
+          marginTop={{ xs: "40px", md: "80px" }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              height: "50px",
+              borderRadius: "36px",
+              fontWeight: 600,
+              padding: "10px 30px",
+              background:
+                "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
+              textTransform: "none",
+            }}
+            endIcon={<ArrowForwardIcon />}
+          >
+            Continue
+          </Button>
         </Grid>
       </Header>
     </>
