@@ -3,6 +3,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BookOwner } from "./Pages/BookOwner";
 
+const formBlack = "#131030CF";
+const formBorder = "#5256A9A6";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Poppins, sans-serif",
@@ -19,20 +22,45 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-root": {
-            backgroundColor: "#131030CF",
+            backgroundColor: formBlack,
+            color: "#7c88a3",
+
             "& fieldset": {
-              borderColor: "#5256A9A6",
+              borderColor: formBorder,
             },
             "&:hover fieldset": {
-              borderColor: "#5256A9A6",
+              borderColor: formBorder,
             },
             "&.Mui-focused fieldset": {
-              borderColor: "#5256A9A6",
+              borderColor: formBorder,
             },
           },
-          "& .MuiOutlinedInput-input": {
+        },
+      },
+    },
+    MuiSelect: {
+      defaultProps: {
+        variant: "outlined",
+        size: "small",
+      },
+      styleOverrides: {
+        root: {
+          "& .MuiSelect-outlined": {
+            backgroundColor: formBlack,
             color: "#7c88a3",
           },
+          ".MuiOutlinedInput-notchedOutline": {
+            borderColor: formBorder,
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: formBorder,
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: formBorder,
+          },
+        },
+        icon: {
+          color: "#667085",
         },
       },
     },

@@ -12,7 +12,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 export function Header({ number, children }) {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box style={{ display: "flex" }}>
@@ -90,8 +90,7 @@ export function Header({ number, children }) {
       <div
         style={{
           minHeight: `calc(100vh - ${isSmallScreen ? 107 : 121}px)`,
-          marginTop: "81px",
-          marginLeft: isSmallScreen ? "25px" : "100px",
+          margin: "81px auto",
         }}
       >
         {children}
