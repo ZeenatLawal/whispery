@@ -19,7 +19,7 @@ export function Header({ number, children }) {
       <AppBar
         position="fixed"
         style={{
-          height: "81px",
+          height: isSmallScreen ? "107px" : "121px",
           backgroundColor: "#141122",
         }}
         elevation={0}
@@ -27,8 +27,8 @@ export function Header({ number, children }) {
         <Toolbar
           style={{
             justifyContent: "space-between",
-            margin: isSmallScreen ? "25x" : "40px",
-            padding: "0 24px",
+            margin: isSmallScreen ? "26px" : "40px 100px",
+            padding: "0",
           }}
         >
           <KeyboardBackspaceIcon fontSize="large" />
@@ -46,13 +46,14 @@ export function Header({ number, children }) {
             }}
           >
             <Typography
-              variant="h6"
+              variant="h4"
               component="span"
               style={{
                 backgroundClip: "text",
                 position: "absolute",
-                top: "2px",
-                left: "4px",
+                top: "-2px",
+                left: 0,
+                fontWeight: 700,
               }}
               sx={{
                 color: "transparent",
@@ -66,17 +67,19 @@ export function Header({ number, children }) {
             <Divider
               sx={{
                 width: "1px",
-                height: "30px",
+                height: "45px",
                 backgroundColor: "white",
                 transform: "rotate(45deg)",
               }}
             />
             <Typography
-              variant="h6"
+              variant="h4"
               component="span"
-              style={{ position: "absolute", top: "26px", left: "20px" }}
-              sx={{
-                fontWeight: "bold",
+              style={{
+                position: "absolute",
+                top: "35px",
+                left: "22px",
+                fontWeight: 700,
               }}
             >
               8
@@ -84,7 +87,13 @@ export function Header({ number, children }) {
           </Box>
         </Toolbar>
       </AppBar>
-      <div style={{ minHeight: "calc(100vh - 81px)", marginTop: "81px" }}>
+      <div
+        style={{
+          minHeight: `calc(100vh - ${isSmallScreen ? 107 : 121}px)`,
+          marginTop: "81px",
+          marginLeft: isSmallScreen ? "25px" : "100px",
+        }}
+      >
         {children}
       </div>
     </Box>
