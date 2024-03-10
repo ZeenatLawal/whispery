@@ -2,6 +2,8 @@ import "./App.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BookOwner } from "./Pages/BookOwner";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { FamilyMembers } from "./Pages/FamilyMembers";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -64,6 +66,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          marginBottom: "8px",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+      },
+    },
   },
 });
 
@@ -71,8 +88,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
-      <BookOwner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BookOwner />} />
+          <Route path="/members" element={<FamilyMembers />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

@@ -35,12 +35,10 @@ export function OwnerForm() {
   return (
     <div
       style={{
-        border: "2px solid",
-        borderImage: "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
-        borderImageSlice: 1,
-        borderRadius: "8px",
         padding: "20px",
         backgroundColor: "#17142B",
+        borderRadius: "15px",
+        boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
       }}
     >
       <Grid container spacing={3}>

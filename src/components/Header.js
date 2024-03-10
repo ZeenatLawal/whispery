@@ -46,14 +46,13 @@ export function Header({ number, children }) {
             }}
           >
             <Typography
-              variant="h4"
-              component="span"
               style={{
                 backgroundClip: "text",
                 position: "absolute",
                 top: "-2px",
                 left: 0,
                 fontWeight: 700,
+                fontSize: "32px",
               }}
               sx={{
                 color: "transparent",
@@ -73,13 +72,12 @@ export function Header({ number, children }) {
               }}
             />
             <Typography
-              variant="h4"
-              component="span"
               style={{
                 position: "absolute",
-                top: "35px",
                 left: "22px",
                 fontWeight: 700,
+                top: "32px",
+                fontSize: "32px",
               }}
             >
               8
