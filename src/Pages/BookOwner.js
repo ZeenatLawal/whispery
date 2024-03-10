@@ -11,7 +11,7 @@ export function BookOwner() {
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <Header number={1}>
+    <Header number={1} path="/">
       <Grid
         container
         width={{ xs: "calc(100vw - 25px)", md: "calc(100vw - 200px)" }}
@@ -68,7 +68,7 @@ export function BookOwner() {
         justifyContent={{ xs: "center", md: "flex-end" }}
         marginTop={{ xs: "40px", md: "80px" }}
       >
-        <ContinueButton />
+        <ContinueButton path="/members" />
       </Grid>
     </Header>
   );

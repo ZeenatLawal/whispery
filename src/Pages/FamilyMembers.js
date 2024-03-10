@@ -14,7 +14,7 @@ export function FamilyMembers() {
   };
 
   return (
-    <Header number={2}>
+    <Header number={2} path="/">
       <Grid
         container
         width={{ xs: "calc(100vw - 25px)", md: "calc(100vw - 200px)" }}
@@ -101,7 +101,7 @@ export function FamilyMembers() {
         justifyContent="center"
         marginTop={{ xs: "118px", md: "139.5px" }}
       >
-        <ContinueButton />
+        <ContinueButton path="/members" />
       </Grid>
     </Header>
   );

@@ -6,12 +6,15 @@ import {
   Divider,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Logo from "../images/Logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
-export function Header({ number, children }) {
+export function Header({ number, children, path }) {
   const theme = useTheme();
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
@@ -31,7 +34,14 @@ export function Header({ number, children }) {
             padding: "0",
           }}
         >
-          <KeyboardBackspaceIcon fontSize="large" />
+          <IconButton
+            sx={{ color: "white" }}
+            onClick={() => {
+              navigate(path);
+            }}
+          >
+            <KeyboardBackspaceIcon fontSize="large" />
+          </IconButton>
 
           <img src={Logo} alt="Logo" style={{ height: "70px" }} />
 
