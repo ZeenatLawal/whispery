@@ -101,7 +101,7 @@ export function FamilyMembers() {
         justifyContent="center"
         marginTop={{ xs: "118px", md: "139.5px" }}
       >
-        <ContinueButton path="/members" />
+        <ContinueButton path="/events" />
       </Grid>
     </Header>
   );

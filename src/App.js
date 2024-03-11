@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { BookOwner } from "./Pages/BookOwner";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { FamilyMembers } from "./Pages/FamilyMembers";
+import { PersonalEvents } from "./Pages/PersonalEvents";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -92,6 +93,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BookOwner />} />
           <Route path="/members" element={<FamilyMembers />} />
+          <Route path="/events" element={<PersonalEvents />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
