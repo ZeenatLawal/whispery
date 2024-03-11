@@ -14,14 +14,12 @@ export function BookOwner() {
     <Header number={1} path="/">
       <Grid
         container
-        width={{ xs: "calc(100vw - 25px)", md: "calc(100vw - 200px)" }}
+        width={{ xs: "calc(100vw - 50px)", md: "calc(100vw - 200px)" }}
       >
         <Grid item xs={12} textAlign="center">
           <Typography
             style={{ fontWeight: 700 }}
-            sx={{
-              typography: { sm: "h3", xs: "h5" },
-            }}
+            fontSize={{ xs: "28px", md: "40px" }}
           >
             For whom is the book?
           </Typography>

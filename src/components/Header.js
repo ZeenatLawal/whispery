@@ -35,7 +35,7 @@ export function Header({ number, children, path }) {
           }}
         >
           <IconButton
-            sx={{ color: "white" }}
+            sx={{ color: "white", padding: 0 }}
             onClick={() => {
               navigate(path);
             }}
@@ -84,7 +84,7 @@ export function Header({ number, children, path }) {
             <Typography
               style={{
                 position: "absolute",
-                left: "22px",
+                left: "18px",
                 fontWeight: 700,
                 top: "32px",
                 fontSize: "32px",

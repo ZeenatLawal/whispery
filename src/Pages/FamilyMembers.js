@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, useMediaQuery } from "@mui/material";
 import { Header } from "../components/Header";
 import { MembersForm } from "../components/MembersForm";
 import { ContinueButton } from "../components/ContinueButton";
@@ -6,10 +6,12 @@ import AddIcon from "@mui/icons-material/Add";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 export function FamilyMembers() {
+  const isSmallest = useMediaQuery("(max-width: 380px)");
+
   const buttonStyle = {
     borderRadius: "31px",
     boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
-    width: { xs: "380px", md: "248px" },
+    width: isSmallest ? "300px" : { xs: "380px", md: "248px" },
     height: "50px",
   };
 
@@ -22,9 +24,7 @@ export function FamilyMembers() {
         <Grid item xs={12} textAlign="center">
           <Typography
             style={{ fontWeight: 700 }}
-            sx={{
-              typography: { sm: "h3", xs: "h5" },
-            }}
+            fontSize={{ xs: "28px", md: "40px" }}
           >
             Add family members
           </Typography>
