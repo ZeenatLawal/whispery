@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 export function ContinueButton({ path }) {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export function ContinueButton({ path }) {
         padding: "10px 30px",
         background: "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
       }}
-      endIcon={<ArrowForwardIcon />}
+      endIcon={<ArrowRightAltIcon fontSize="large" />}
       onClick={() => {
         navigate(path);
       }}

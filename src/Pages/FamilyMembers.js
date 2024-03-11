@@ -17,10 +17,7 @@ export function FamilyMembers() {
 
   return (
     <Header number={2} path="/">
-      <Grid
-        container
-        width={{ xs: "calc(100vw - 25px)", md: "calc(100vw - 200px)" }}
-      >
+      <>
         <Grid item xs={12} textAlign="center">
           <Typography
             style={{ fontWeight: 700 }}
@@ -34,7 +31,7 @@ export function FamilyMembers() {
           item
           container
           xs={12}
-          marginTop={{ xs: "65px", md: "80px" }}
+          marginTop={{ xs: "45px", md: "80px" }}
           alignItems="center"
         >
           <Grid container justifyContent="center">
@@ -94,7 +91,7 @@ export function FamilyMembers() {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </>
 
       <Grid
         container

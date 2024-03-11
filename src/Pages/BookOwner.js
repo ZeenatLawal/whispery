@@ -12,10 +12,7 @@ export function BookOwner() {
 
   return (
     <Header number={1} path="/">
-      <Grid
-        container
-        width={{ xs: "calc(100vw - 50px)", md: "calc(100vw - 200px)" }}
-      >
+      <>
         <Grid item xs={12} textAlign="center">
           <Typography
             style={{ fontWeight: 700 }}
@@ -29,7 +26,7 @@ export function BookOwner() {
           item
           container
           xs={12}
-          marginTop={{ xs: "65px", md: "80px" }}
+          marginTop={{ xs: "45px", md: "80px" }}
           alignItems="center"
         >
           <Grid item xs={12} md={6}>
@@ -59,7 +56,7 @@ export function BookOwner() {
             </div>
           </Grid>
         </Grid>
-      </Grid>
+      </>
 
       <Grid
         container

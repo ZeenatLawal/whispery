@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   useTheme,
   IconButton,
+  Grid,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Logo from "../images/Logo.png";
@@ -96,15 +97,15 @@ export function Header({ number, children, path }) {
         </Toolbar>
       </AppBar>
 
-      <div
-        style={{
-          paddingTop: isSmallScreen ? "90px" : "120px",
-          minHeight: `calc(100vh - ${isSmallScreen ? 107 : 121}px)`,
-          margin: "81px auto 30px",
-        }}
+      <Grid
+        container
+        width={{ xs: "calc(100vw - 50px)", md: "calc(100vw - 200px)" }}
+        minHeight={{ xs: "calc(100vh - 107px)", md: "calc(100vh - 121px)" }}
+        paddingTop={{ xs: "45px", md: "70px" }}
+        margin="108px auto 30px"
       >
         {children}
-      </div>
+      </Grid>
     </Box>
   );
 }
