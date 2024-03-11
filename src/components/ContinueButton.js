@@ -14,6 +14,7 @@ export function ContinueButton({ path }) {
         fontWeight: 600,
         padding: "10px 30px",
         background: "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
+        marginBottom: "30px",
       }}
       endIcon={<ArrowRightAltIcon fontSize="large" />}
       onClick={() => {

@@ -41,6 +41,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          backgroundColor: "#0D0B22",
+        },
+      },
+    },
     MuiSelect: {
       defaultProps: {
         variant: "outlined",
