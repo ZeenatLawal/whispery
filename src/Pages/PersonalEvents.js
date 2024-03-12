@@ -69,7 +69,7 @@ export function PersonalEvents() {
         justifyContent="center"
         marginTop={{ xs: "338px", md: "340px" }}
       >
-        <ContinueButton path="/events" />
+        <ContinueButton path="/themes" />
       </Grid>
     </Header>
   );
