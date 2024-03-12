@@ -2,7 +2,6 @@ import {
   Grid,
   Typography,
   Button,
-  InputLabel,
   TextField,
   useMediaQuery,
 } from "@mui/material";
