@@ -1,9 +1,10 @@
-import { Grid, Typography, Button, useMediaQuery } from "@mui/material";
+import { Grid, Button, useMediaQuery } from "@mui/material";
 import { Header } from "../components/Header";
 import { MembersForm } from "../components/MembersForm";
 import { ContinueButton } from "../components/ContinueButton";
 import AddIcon from "@mui/icons-material/Add";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import { PageTitle } from "../components/PageTitle";
 
 export function FamilyMembers() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
@@ -19,12 +20,7 @@ export function FamilyMembers() {
     <Header number={2} path="/">
       <>
         <Grid item xs={12} textAlign="center">
-          <Typography
-            style={{ fontWeight: 700 }}
-            fontSize={{ xs: "28px", md: "40px" }}
-          >
-            Add family members
-          </Typography>
+          <PageTitle title="Add family members" />
         </Grid>
 
         <Grid

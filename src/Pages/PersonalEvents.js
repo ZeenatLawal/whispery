@@ -1,15 +1,10 @@
-import {
-  Grid,
-  Typography,
-  Button,
-  TextField,
-  useMediaQuery,
-} from "@mui/material";
+import { Grid, Button, TextField, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddIcon from "@mui/icons-material/Add";
+import { PageTitle } from "../components/PageTitle";
 
 export function PersonalEvents() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
@@ -18,12 +13,7 @@ export function PersonalEvents() {
   return (
     <Header number={3} path="/members">
       <Grid item xs={12} textAlign="center">
-        <Typography
-          style={{ fontWeight: 700 }}
-          fontSize={{ xs: "28px", md: "40px" }}
-        >
-          Add personal events
-        </Typography>
+        <PageTitle title="Add personal events" />
         <Button
           variant="outlined"
           sx={{

@@ -1,8 +1,9 @@
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { OwnerForm } from "../components/OwnerForm";
 import ownerImg from "../images/ownerImg.png";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
+import { PageTitle } from "../components/PageTitle";
 
 export function BookOwner() {
   const theme = useTheme();
@@ -14,12 +15,7 @@ export function BookOwner() {
     <Header number={1} path="/">
       <>
         <Grid item xs={12} textAlign="center">
-          <Typography
-            style={{ fontWeight: 700 }}
-            fontSize={{ xs: "28px", md: "40px" }}
-          >
-            For whom is the book?
-          </Typography>
+          <PageTitle title="For whom is the book?" />
         </Grid>
 
         <Grid
