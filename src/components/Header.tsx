@@ -10,7 +10,7 @@ import {
   Grid,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Logo from "../images/logo.png";
+import Logo from "../assets/logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { ReactNode } from "react";
 

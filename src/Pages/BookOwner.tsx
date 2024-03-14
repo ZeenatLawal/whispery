@@ -1,6 +1,6 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { OwnerForm } from "../components/OwnerForm";
-import ownerImg from "../images/ownerImg.png";
+import ownerImg from "../assets/ownerImg.png";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import { PageTitle } from "../components/PageTitle";
