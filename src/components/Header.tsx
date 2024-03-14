@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Logo from "../images/logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 
 export function Header({ pageNumber, children, path }:{pageNumber: number; children: ReactNode; path:string}) {
   const theme = useTheme();
