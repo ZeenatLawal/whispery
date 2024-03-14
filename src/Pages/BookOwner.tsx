@@ -12,7 +12,7 @@ export function BookOwner() {
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <Header number={1} path="/">
+    <Header pageNumber={1} path="/">
       <>
         <Grid item xs={12} textAlign="center">
           <PageTitle title="For whom is the book?" />
@@ -28,7 +28,7 @@ export function BookOwner() {
           <Grid item xs={12} md={6}>
             <div
               style={{
-                width: isLgScreen && "505px",
+                width: isLgScreen ? "505px":"auto",
               }}
             >
               <OwnerForm />

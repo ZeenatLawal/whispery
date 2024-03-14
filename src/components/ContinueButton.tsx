@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
-export function ContinueButton({ path }) {
+export function ContinueButton({ path }:{path:string}) {
   const navigate = useNavigate();
 
   return (

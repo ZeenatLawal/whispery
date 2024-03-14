@@ -17,7 +17,7 @@ export function FamilyMembers() {
   };
 
   return (
-    <Header number={2} path="/">
+    <Header pageNumber={2} path="/">
       <>
         <Grid item xs={12} textAlign="center">
           <PageTitle title="Add family members" />

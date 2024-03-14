@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-export function PageTitle({ title }) {
+export function PageTitle({ title }:{title:string}) {
   return (
     <Typography
       style={{ fontWeight: 700 }}

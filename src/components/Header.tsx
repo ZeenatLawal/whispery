@@ -12,8 +12,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import Logo from "../images/logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { ReactElement, ReactNode } from "react";
 
-export function Header({ number, children, path }) {
+export function Header({ pageNumber, children, path }:{pageNumber: number; children: ReactNode; path:string}) {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -72,7 +73,7 @@ export function Header({ number, children, path }) {
                   "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
               }}
             >
-              {number}
+              {pageNumber}
             </Typography>
             <Divider
               sx={{

@@ -11,7 +11,7 @@ export function PersonalEvents() {
   const [personalEvent, setPersonalEvent] = useState("");
 
   return (
-    <Header number={3} path="/members">
+    <Header pageNumber={3} path="/members">
       <Grid item xs={12} textAlign="center">
         <PageTitle title="Add personal events" />
         <Button
