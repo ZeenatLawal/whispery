@@ -186,7 +186,7 @@ export function ChooseTheme() {
         justifyContent={{ xs: "center", md: "flex-end" }}
         marginTop={{ xs: "127px", md: "92px" }}
       >
-        <ContinueButton path="/themes" />
+        <ContinueButton path="/message" />
       </Grid>
     </Header>
   );

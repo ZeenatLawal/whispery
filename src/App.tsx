@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { FamilyMembers } from "./Pages/FamilyMembers";
 import { PersonalEvents } from "./Pages/PersonalEvents";
 import { ChooseTheme } from "./Pages/ChooseTheme";
+import { PersonalMessage } from "./Pages/PersonalMessage";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -103,6 +104,7 @@ function App() {
           <Route path="/members" element={<FamilyMembers />} />
           <Route path="/events" element={<PersonalEvents />} />
           <Route path="/themes" element={<ChooseTheme />} />
+          <Route path="/message" element={<PersonalMessage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
