@@ -9,23 +9,47 @@ import {
   IconButton,
   Grid,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { ReactNode } from "react";
+import MobileBg from "../assets/starryBgMobile.png";
 
-export function Header({ pageNumber, children, path }:{pageNumber: number; children: ReactNode; path:string}) {
+export function Header({
+  pageNumber,
+  children,
+  path,
+}: {
+  pageNumber: number;
+  children: ReactNode;
+  path: string;
+}) {
   const theme = useTheme();
+  const location = useLocation();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
+  const backgroundImage =
+    location.pathname === "/message" && isSmallScreen
+      ? `url(${MobileBg})`
+      : "none";
+
   return (
-    <Box style={{ display: "flex" }}>
+    <Box
+      style={{
+        display: "flex",
+        backgroundImage: backgroundImage,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundColor: "#141122",
+      }}
+    >
       <AppBar
         position="fixed"
         style={{
           height: isSmallScreen ? "107px" : "121px",
-          backgroundColor: "#141122",
+          background: "inherit",
         }}
         elevation={0}
       >
@@ -101,7 +125,7 @@ export function Header({ pageNumber, children, path }:{pageNumber: number; child
       <Grid
         container
         width={{ xs: "calc(100vw - 50px)", md: "calc(100vw - 200px)" }}
-        minHeight={{ xs: "calc(100vh - 107px)", md: "calc(100vh - 121px)" }}
+        minHeight="calc(100vh - 107px)"
         paddingTop={{ xs: "45px", md: "70px" }}
         margin="108px auto 0px"
       >
