@@ -16,7 +16,7 @@ export function ContinueButton({ path }: { path: string }) {
         fontSize: "18px",
         background: "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
         marginBottom: "30px",
-        boxShadow: "0px 0px 44.599998474121094px 0px rgba(143, 0, 255, 0.51)",
+        boxShadow: "0px 0px 44.6px 0px #8F00FF82",
       }}
       endIcon={<ArrowRightAltIcon fontSize="large" />}
       onClick={() => {

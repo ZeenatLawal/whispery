@@ -38,6 +38,7 @@ export function PersonalMessage() {
         container
         xs={12}
         marginTop={{ xs: "55px", md: "80px" }}
+        marginBottom={{ xs: "73px", md: "103px" }}
         justifyContent="center"
       >
         <div
@@ -46,7 +47,7 @@ export function PersonalMessage() {
             flexDirection: "column",
             alignItems: "center",
             padding: isSmallScreen ? "65px 25px" : "63px 112px",
-            backgroundColor: "#17142A63",
+            background: "#17142A",
             borderRadius: "15px",
             boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
             maxWidth: isSmallest ? "300px" : "763px",
@@ -105,7 +106,13 @@ export function PersonalMessage() {
             Vivamus augue ipsum, hendrerit et neque sed, tincidunt dapibus ante. Nulla vitae ante volutpat ex dictum eleifend volutpat in velit. Ut non enim vel orci condimentum blandit sit amet sed nunc. Donec tincidunt vehicula finibus.`
             }
             value={personalMessage}
-            onChange={(e) => setPersonalMessage(e.target.value)}
+            onChange={(e) => {
+              const message = e.target.value;
+              const wordCount = message.trim().split(/\s+/).length;
+              if (wordCount <= 60) {
+                setPersonalMessage(message);
+              }
+            }}
           />
 
           <ContinueButton path="/message" />
