@@ -28,7 +28,7 @@ export function BookOwner() {
           <Grid item xs={12} md={6}>
             <div
               style={{
-                width: isLgScreen ? "505px":"auto",
+                width: isLgScreen ? "505px" : "auto",
               }}
             >
               <OwnerForm />

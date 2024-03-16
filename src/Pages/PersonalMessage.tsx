@@ -115,7 +115,7 @@ export function PersonalMessage() {
             }}
           />
 
-          <ContinueButton path="/message" />
+          <ContinueButton path="/summary" />
         </div>
       </Grid>
     </Header>

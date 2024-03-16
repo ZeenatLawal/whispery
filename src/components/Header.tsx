@@ -14,6 +14,7 @@ import Logo from "../assets/logo.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { ReactNode } from "react";
 import MobileBg from "../assets/starryBgMobile.png";
+import DesktopBg from "../assets/starryBgDesktop.png";
 
 export function Header({
   pageNumber,
@@ -30,8 +31,11 @@ export function Header({
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const backgroundImage =
-    location.pathname === "/message" && isSmallScreen
+    (location.pathname === "/message" || location.pathname === "/summary") &&
+    isSmallScreen
       ? `url(${MobileBg})`
+      : location.pathname === "/summary" && !isSmallScreen
+      ? `url(${DesktopBg})`
       : "none";
 
   return (
@@ -79,6 +83,7 @@ export function Header({
               padding: "16px",
               position: "relative",
               height: "100%",
+              top: "-10px",
             }}
           >
             <Typography
