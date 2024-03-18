@@ -79,7 +79,7 @@ export function Summary() {
         justifyContent="center"
         marginTop={{ xs: "65px", md: "70px" }}
       >
-        <ContinueButton path="/summary" />
+        <ContinueButton path="/animation" />
       </Grid>
     </Header>
   );
