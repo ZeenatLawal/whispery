@@ -9,6 +9,7 @@ import { PersonalMessage } from "./Pages/PersonalMessage";
 import { Summary } from "./Pages/Summary";
 import { Animation } from "./Pages/Animation";
 import { BookTypes } from "./Pages/BookTypes";
+import { BookPurchase } from "./Pages/BookPurchase";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -110,6 +111,7 @@ function App() {
           <Route path="/summary" element={<Summary />} />
           <Route path="/animation" element={<Animation />} />
           <Route path="/bookTypes" element={<BookTypes />} />
+          <Route path="/bookPurchase" element={<BookPurchase />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

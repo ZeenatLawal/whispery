@@ -19,7 +19,7 @@ export function Animation() {
     setTimeout(() => {
       clearInterval(interval);
       setIsAnimating(false);
-    }, 5000);
+    }, 3000); // show animation for 3 seconds before moving to next page
 
     return () => clearInterval(interval);
   }, []);

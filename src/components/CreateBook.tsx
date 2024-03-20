@@ -7,6 +7,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import CheckIcon from "../assets/checkIcon.png";
+import { useNavigate } from "react-router-dom";
 
 export function CreateBook({
   bookType,
@@ -15,6 +16,8 @@ export function CreateBook({
   bookType: string;
   bookImage: string;
 }) {
+  const navigate = useNavigate();
+
   return (
     <Grid
       item
@@ -130,6 +133,9 @@ export function CreateBook({
           fontWeight: 600,
           fontSize: "16px",
           marginTop: "20px",
+        }}
+        onClick={() => {
+          navigate("/bookPurchase");
         }}
       >
         Continue
