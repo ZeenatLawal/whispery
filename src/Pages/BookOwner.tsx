@@ -9,7 +9,6 @@ export function BookOwner() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isMidScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Header pageNumber={1} path="/">
@@ -26,13 +25,7 @@ export function BookOwner() {
           alignItems="center"
         >
           <Grid item xs={12} md={6}>
-            <div
-              style={{
-                width: isLgScreen ? "505px" : "auto",
-              }}
-            >
-              <OwnerForm />
-            </div>
+            <OwnerForm />
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -47,7 +40,10 @@ export function BookOwner() {
               <img
                 src={ownerImg}
                 alt="3D illustration of a young boy"
-                style={{ width: "100%", height: "auto" }}
+                style={{
+                  width: "100%",
+                  maxHeight: isSmallScreen ? "680px" : "960px",
+                }}
               />
             </div>
           </Grid>
