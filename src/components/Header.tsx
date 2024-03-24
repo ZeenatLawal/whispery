@@ -21,9 +21,9 @@ export function Header({
   children,
   path,
 }: {
-  pageNumber: number;
+  pageNumber?: number;
   children: ReactNode;
-  path: string;
+  path?: string;
 }) {
   const theme = useTheme();
   const location = useLocation();
@@ -59,71 +59,76 @@ export function Header({
       >
         <Toolbar
           style={{
-            justifyContent: "space-between",
+            justifyContent: path && pageNumber ? "space-between" : "center",
             margin: isSmallScreen ? "26px" : "40px 100px",
             padding: "0",
           }}
         >
-          <IconButton
-            sx={{ color: "white", padding: 0 }}
-            onClick={() => {
-              navigate(path);
-            }}
-          >
-            <KeyboardBackspaceIcon fontSize="large" />
-          </IconButton>
+          {path && (
+            <IconButton
+              sx={{ color: "white", padding: 0 }}
+              onClick={() => {
+                navigate(path);
+              }}
+            >
+              <KeyboardBackspaceIcon fontSize="large" />
+            </IconButton>
+          )}
 
           <img src={Logo} alt="Logo" style={{ height: "70px" }} />
 
-          <Box
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "16px",
-              position: "relative",
-              height: "100%",
-              top: "-10px",
-            }}
-          >
-            <Typography
+          {pageNumber && (
+            <Box
               style={{
-                backgroundClip: "text",
-                position: "absolute",
-                top: "-2px",
-                left: 0,
-                fontWeight: 700,
-                fontSize: "32px",
-              }}
-              sx={{
-                color: "transparent",
-                fontWeight: "bold",
-                background:
-                  "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "16px",
+                position: "relative",
+                height: "100%",
+                top: "-10px",
               }}
             >
-              {pageNumber}
-            </Typography>
-            <Divider
-              sx={{
-                width: "1px",
-                height: "45px",
-                backgroundColor: "white",
-                transform: "rotate(45deg)",
-              }}
-            />
-            <Typography
-              style={{
-                position: "absolute",
-                left: "18px",
-                fontWeight: 700,
-                top: "32px",
-                fontSize: "32px",
-              }}
-            >
-              8
-            </Typography>
-          </Box>
+              <Typography
+                style={{
+                  backgroundClip: "text",
+                  position: "absolute",
+                  top: "-2px",
+                  left: 0,
+                  fontWeight: 700,
+                  fontSize: "32px",
+                }}
+                sx={{
+                  color: "transparent",
+                  fontWeight: "bold",
+                  background:
+                    "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
+                }}
+              >
+                {pageNumber}
+              </Typography>
+
+              <Divider
+                sx={{
+                  width: "1px",
+                  height: "45px",
+                  backgroundColor: "white",
+                  transform: "rotate(45deg)",
+                }}
+              />
+              <Typography
+                style={{
+                  position: "absolute",
+                  left: "18px",
+                  fontWeight: 700,
+                  top: "32px",
+                  fontSize: "32px",
+                }}
+              >
+                8
+              </Typography>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
 

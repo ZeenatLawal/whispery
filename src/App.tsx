@@ -10,6 +10,8 @@ import { Summary } from "./Pages/Summary";
 import { Animation } from "./Pages/Animation";
 import { BookTypes } from "./Pages/BookTypes";
 import { BookPurchase } from "./Pages/BookPurchase";
+import { LoginPage } from "./Pages/LoginPage";
+import { useCookie } from "./hooks/useCookie";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -98,12 +100,25 @@ const theme = createTheme({
 });
 
 function App() {
+  const [loggedIn, setLoggedIn] = useCookie<boolean>("loggedIn", false);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BookOwner />} />
+          <Route
+            path="/"
+            element={
+              <>
+                {loggedIn ? (
+                  <BookOwner />
+                ) : (
+                  <LoginPage setLoggedIn={setLoggedIn} />
+                )}
+              </>
+            }
+          />
           <Route path="/members" element={<FamilyMembers />} />
           <Route path="/events" element={<PersonalEvents />} />
           <Route path="/themes" element={<ChooseTheme />} />
