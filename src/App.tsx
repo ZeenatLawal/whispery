@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BookOwner } from "./Pages/BookOwner";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { FamilyMembers } from "./Pages/FamilyMembers";
 import { PersonalEvents } from "./Pages/PersonalEvents";
 import { ChooseTheme } from "./Pages/ChooseTheme";
@@ -12,6 +12,7 @@ import { BookTypes } from "./Pages/BookTypes";
 import { BookPurchase } from "./Pages/BookPurchase";
 import { LoginPage } from "./Pages/LoginPage";
 import { useCookie } from "./hooks/useCookie";
+import { ReactNode, useEffect } from "react";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -99,6 +100,15 @@ const theme = createTheme({
   },
 });
 
+function ScrollToTop({ children }: { children: ReactNode }) {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [location]);
+
+  return <>{children}</>;
+}
+
 function App() {
   const [loggedIn, setLoggedIn] = useCookie<boolean>("loggedIn", false);
 
@@ -106,28 +116,30 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                {loggedIn ? (
-                  <BookOwner />
-                ) : (
-                  <LoginPage setLoggedIn={setLoggedIn} />
-                )}
-              </>
-            }
-          />
-          <Route path="/members" element={<FamilyMembers />} />
-          <Route path="/events" element={<PersonalEvents />} />
-          <Route path="/themes" element={<ChooseTheme />} />
-          <Route path="/message" element={<PersonalMessage />} />
-          <Route path="/summary" element={<Summary />} />
-          <Route path="/animation" element={<Animation />} />
-          <Route path="/bookTypes" element={<BookTypes />} />
-          <Route path="/bookPurchase" element={<BookPurchase />} />
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  {loggedIn ? (
+                    <BookOwner />
+                  ) : (
+                    <LoginPage setLoggedIn={setLoggedIn} />
+                  )}
+                </>
+              }
+            />
+            <Route path="/members" element={<FamilyMembers />} />
+            <Route path="/events" element={<PersonalEvents />} />
+            <Route path="/themes" element={<ChooseTheme />} />
+            <Route path="/message" element={<PersonalMessage />} />
+            <Route path="/summary" element={<Summary />} />
+            <Route path="/animation" element={<Animation />} />
+            <Route path="/bookTypes" element={<BookTypes />} />
+            <Route path="/bookPurchase" element={<BookPurchase />} />
+          </Routes>
+        </ScrollToTop>
       </BrowserRouter>
     </ThemeProvider>
   );
