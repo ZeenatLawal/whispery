@@ -84,7 +84,15 @@ export function ChooseTheme() {
       </Grid>
 
       <Grid item container xs={12} marginTop="80px">
-        <Grid container ref={containerRef} overflow="hidden" flexWrap="nowrap">
+        <Grid
+          container
+          ref={containerRef}
+          style={{
+            overflowX: "auto",
+            scrollbarWidth: "none",
+          }}
+          flexWrap="nowrap"
+        >
           {images.map(({ img, caption }, index) => (
             <Card
               key={caption}
@@ -141,6 +149,9 @@ export function ChooseTheme() {
                     backgroundColor:
                       index === activeIndex ? "#272354" : "inherit",
                   }}
+                  onClick={() => {
+                    setActiveIndex(index);
+                  }}
                 >
                   {index === activeIndex && (
                     <Check sx={{ color: "#fff", height: "16px" }} />
@@ -158,9 +169,7 @@ export function ChooseTheme() {
         >
           <IconButton
             onClick={() => {
-              setActiveIndex((prevIndex) =>
-                prevIndex === 0 ? images.length - 1 : prevIndex - 1
-              );
+              setActiveIndex((prevIndex) => prevIndex - 1);
             }}
             sx={iconStyle}
             disabled={activeIndex === 0}
@@ -169,9 +178,7 @@ export function ChooseTheme() {
           </IconButton>
           <IconButton
             onClick={() => {
-              setActiveIndex((prevIndex) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
-              );
+              setActiveIndex((prevIndex) => prevIndex + 1);
             }}
             sx={iconStyle}
             disabled={activeIndex === images.length - 1}
