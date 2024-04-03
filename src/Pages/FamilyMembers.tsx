@@ -1,100 +1,133 @@
-import { Grid, Button, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import {
+  Grid,
+  Button,
+  useMediaQuery,
+  TextField,
+  InputLabel,
+  Typography,
+  List,
+  ListItem,
+} from "@mui/material";
 import { Header } from "../components/Header";
-import { MembersForm } from "../components/MembersForm";
 import { ContinueButton } from "../components/ContinueButton";
 import AddIcon from "@mui/icons-material/Add";
-import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import { PageTitle } from "../components/PageTitle";
 
 export function FamilyMembers() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
-
-  const buttonStyle = {
-    borderRadius: "31px",
-    boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
-    width: isSmallest ? "300px" : { xs: "380px", md: "248px" },
-    height: "50px",
-  };
+  const [member, setMember] = useState("");
+  const [family, setFamily] = useState<string[]>([]);
 
   return (
     <Header pageNumber={2} path="/">
-      <>
-        <Grid item xs={12} textAlign="center">
-          <PageTitle title="Add family members" />
-        </Grid>
+      <Grid item xs={12} textAlign="center">
+        <PageTitle
+          title="Voeg gezinsleden toe"
+          subtitle="Voeg de moeder, vader, zussen en broers toe die je mee wilt nemen in het verhaal."
+        />
+      </Grid>
 
+      <Grid
+        item
+        container
+        xs={12}
+        marginTop="25px"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Grid
           item
-          container
           xs={12}
-          marginTop={{ xs: "45px", md: "80px" }}
-          alignItems="center"
+          md={6}
+          style={{
+            padding: "40px 25px",
+            backgroundColor: "#17142B",
+            borderRadius: "15px",
+            boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
+          }}
         >
-          <Grid container justifyContent="center">
-            <MembersForm />
-          </Grid>
-
-          <Grid
-            container
-            justifyContent="center"
-            marginTop={{ xs: "16px", md: "50px" }}
-            direction={{ xs: "column", md: "row" }}
-            alignItems="center"
-            spacing={3}
-          >
-            <Grid item>
-              <Button
-                variant="outlined"
-                sx={buttonStyle}
-                startIcon={
-                  <AddIcon sx={{ color: "#C665F3" }} fontSize="large" />
-                }
-              >
-                <div
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    fontSize: "16px",
-                  }}
-                >
-                  Add Family Member
-                </div>
-              </Button>
-            </Grid>
-
-            <Grid item>
-              <Button
-                variant="outlined"
-                sx={buttonStyle}
-                startIcon={
-                  <AutoFixHighIcon sx={{ color: "#C665F3" }} fontSize="large" />
-                }
-              >
-                <div
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    fontSize: "16px",
-                  }}
-                >
-                  Customize Family
-                </div>
-              </Button>
-            </Grid>
-          </Grid>
+          <InputLabel htmlFor="first-member">
+            Gezinslid {family.length + 1}
+          </InputLabel>
+          <TextField
+            id="first-member"
+            placeholder="Bjiv. Moeder Evelien"
+            fullWidth
+            value={member}
+            onChange={(e) => setMember(e.target.value)}
+          />
         </Grid>
-      </>
+
+        <Grid item xs={12} textAlign="center" marginTop="16px">
+          <Button
+            variant="outlined"
+            sx={{
+              borderRadius: "31px",
+              boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
+              width: isSmallest ? "300px" : { xs: "380px", md: "320px" },
+              height: "50px",
+            }}
+            startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}
+            onClick={() => {
+              setFamily((prevFamily) => {
+                if (prevFamily.includes(member)) {
+                  return prevFamily;
+                } else {
+                  return [...prevFamily, member];
+                }
+              });
+              setMember("");
+            }}
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
+                backgroundClip: "text",
+                color: "transparent",
+                fontSize: "16px",
+              }}
+            >
+              Voeg nog een gezinslid toe
+            </div>
+          </Button>
+        </Grid>
+
+        {family.length > 0 && (
+          <div
+            style={{
+              padding: "25px 40px",
+              marginTop: "16px",
+              backgroundColor: "#17142B",
+              borderRadius: "15px",
+              boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
+            }}
+          >
+            <List component="ol">
+              {family.map((fam, index) => (
+                <ListItem key={index} component="li">
+                  <Typography>
+                    <strong>{index + 1}. </strong> {fam}
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        )}
+      </Grid>
 
       <Grid
         container
         justifyContent="center"
         marginTop={{ xs: "118px", md: "139.5px" }}
       >
-        <ContinueButton path="/events" />
+        <ContinueButton
+          path="/events"
+          onClick={async () => {
+            console.log("send family members details");
+          }}
+        />
       </Grid>
     </Header>
   );
