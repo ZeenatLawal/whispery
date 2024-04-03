@@ -7,11 +7,7 @@ import { PersonalEvents } from "./Pages/PersonalEvents";
 import { ChooseTheme } from "./Pages/ChooseTheme";
 import { PersonalMessage } from "./Pages/PersonalMessage";
 import { Summary } from "./Pages/Summary";
-import { Animation } from "./Pages/Animation";
 import { BookTypes } from "./Pages/BookTypes";
-import { BookPurchase } from "./Pages/BookPurchase";
-import { LoginPage } from "./Pages/LoginPage";
-import { useCookie } from "./hooks/useCookie";
 import { ReactNode, useEffect } from "react";
 
 const formBlack = "#131030CF";
@@ -110,34 +106,19 @@ function ScrollToTop({ children }: { children: ReactNode }) {
 }
 
 function App() {
-  const [loggedIn, setLoggedIn] = useCookie<boolean>("loggedIn", false);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
         <ScrollToTop>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {loggedIn ? (
-                    <BookOwner />
-                  ) : (
-                    <LoginPage setLoggedIn={setLoggedIn} />
-                  )}
-                </>
-              }
-            />
+            <Route path="/" element={<BookOwner />} />
             <Route path="/members" element={<FamilyMembers />} />
             <Route path="/events" element={<PersonalEvents />} />
             <Route path="/themes" element={<ChooseTheme />} />
             <Route path="/message" element={<PersonalMessage />} />
             <Route path="/summary" element={<Summary />} />
-            <Route path="/animation" element={<Animation />} />
             <Route path="/bookTypes" element={<BookTypes />} />
-            <Route path="/bookPurchase" element={<BookPurchase />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>
