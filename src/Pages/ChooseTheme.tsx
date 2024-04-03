@@ -29,26 +29,24 @@ import Castles from "../assets/castles.png";
 import CandyWorld from "../assets/candyWorld.png";
 import MagicSchool from "../assets/magicSchool.png";
 import WildWest from "../assets/wildWest.png";
-import PurchasingPet from "../assets/purchasingPet.png";
 
 const images = [
-  { caption: "Jungle", img: Jungle },
-  { caption: "Safari", img: Safari },
-  { caption: "Zoo", img: Zoo },
-  { caption: "Amusement park", img: AmusementPark },
-  { caption: "Underwater", img: Underwater },
-  { caption: "Space", img: Space },
-  { caption: "Island", img: Island },
-  { caption: "Fantasy land", img: FantasyLand },
-  { caption: "Dragon world", img: DragonWorld },
-  { caption: "Circus", img: Circus },
-  { caption: "Dinosaur", img: Dinosaur },
-  { caption: "Robot world", img: RobotWorld },
-  { caption: "Castles", img: Castles },
-  { caption: "Candy world", img: CandyWorld },
-  { caption: "Magic school", img: MagicSchool },
-  { caption: "Wild west", img: WildWest },
-  { caption: "Purchasing a Pet", img: PurchasingPet },
+  { caption: "Jungle", value: "Jungle", img: Jungle },
+  { caption: "Safari", value: "Safari", img: Safari },
+  { caption: "Dierentuin", value: "Zoo", img: Zoo },
+  { caption: "Pretpark", value: "Amusement park", img: AmusementPark },
+  { caption: "Onderwater wereld", value: "Underwater", img: Underwater },
+  { caption: "Ruimte", value: "Space", img: Space },
+  { caption: "Eiland", value: "Island", img: Island },
+  { caption: "Fantasieland", value: "Fantasy land", img: FantasyLand },
+  { caption: "Draken wereld", value: "Dragon world", img: DragonWorld },
+  { caption: "Circus", value: "Circus", img: Circus },
+  { caption: "Dinosaurus wereld", value: "Dinosaur world", img: Dinosaur },
+  { caption: "Robot wereld", value: "Robot world", img: RobotWorld },
+  { caption: "Kastelen", value: "Castles", img: Castles },
+  { caption: "Snoep wereld", value: "Candy world", img: CandyWorld },
+  { caption: "Magische school", value: "Magic school", img: MagicSchool },
+  { caption: "Wilde westen", value: "Wild west", img: WildWest },
 ];
 
 export function ChooseTheme() {
@@ -80,7 +78,10 @@ export function ChooseTheme() {
   return (
     <Header pageNumber={4} path="/events">
       <Grid item xs={12} textAlign="center">
-        <PageTitle title="Choose a theme" />
+        <PageTitle
+          title="Kies een thema"
+          subtitle="Dit wordt het thema van het boek."
+        />
       </Grid>
 
       <Grid item container xs={12} marginTop="80px">
@@ -193,7 +194,12 @@ export function ChooseTheme() {
         justifyContent={{ xs: "center", md: "flex-end" }}
         marginTop={{ xs: "127px", md: "92px" }}
       >
-        <ContinueButton path="/message" />
+        <ContinueButton
+          path="/message"
+          onClick={async () => {
+            console.log("send theme", images[activeIndex].value);
+          }}
+        />
       </Grid>
     </Header>
   );
