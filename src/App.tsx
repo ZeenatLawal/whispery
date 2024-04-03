@@ -9,6 +9,7 @@ import { PersonalMessage } from "./Pages/PersonalMessage";
 import { Summary } from "./Pages/Summary";
 import { BookTypes } from "./Pages/BookTypes";
 import { ReactNode, useEffect } from "react";
+import { UserDetails } from "./Pages/UserDetails";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -118,6 +119,7 @@ function App() {
             <Route path="/themes" element={<ChooseTheme />} />
             <Route path="/message" element={<PersonalMessage />} />
             <Route path="/summary" element={<Summary />} />
+            <Route path="/userDetails" element={<UserDetails />} />
             <Route path="/bookTypes" element={<BookTypes />} />
           </Routes>
         </ScrollToTop>

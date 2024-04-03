@@ -7,7 +7,7 @@ import PaperBook from "../assets/paperBook.png";
 
 export function BookTypes() {
   return (
-    <Header pageNumber={8} path="/summary">
+    <Header pageNumber={8} path="/userDetails">
       <Grid item xs={12} textAlign="center">
         <PageTitle title="Select book type you want to get" />
       </Grid>
