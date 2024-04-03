@@ -2,7 +2,13 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
-export function ContinueButton({ path }: { path: string }) {
+export function ContinueButton({
+  path,
+  onClick,
+}: {
+  path: string;
+  onClick: () => void;
+}) {
   const navigate = useNavigate();
 
   return (
@@ -20,10 +26,11 @@ export function ContinueButton({ path }: { path: string }) {
       }}
       endIcon={<ArrowRightAltIcon fontSize="large" />}
       onClick={() => {
+        onClick();
         navigate(path);
       }}
     >
-      Continue
+      Volgende
     </Button>
   );
 }
