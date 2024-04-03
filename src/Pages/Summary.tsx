@@ -79,7 +79,12 @@ export function Summary() {
         justifyContent="center"
         marginTop={{ xs: "65px", md: "70px" }}
       >
-        <ContinueButton path="/userDetails" />
+        <ContinueButton
+          path="/userDetails"
+          onClick={async () => {
+            console.log("send summary");
+          }}
+        />
       </Grid>
     </Header>
   );

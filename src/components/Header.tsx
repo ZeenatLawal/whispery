@@ -31,11 +31,10 @@ export function Header({
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const backgroundImage =
-    (location.pathname === "/message" || location.pathname === "/summary") &&
-    isSmallScreen
-      ? `url(${MobileBg})`
-      : location.pathname === "/summary" && !isSmallScreen
-      ? `url(${DesktopBg})`
+    location.pathname === "/summary"
+      ? isSmallScreen
+        ? `url(${MobileBg})`
+        : `url(${DesktopBg})`
       : "none";
 
   return (

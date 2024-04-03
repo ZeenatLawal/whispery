@@ -43,7 +43,12 @@ export function UserDetails() {
         justifyContent="center"
         marginTop={{ xs: "65px", md: "70px" }}
       >
-        <ContinueButton path="/bookTypes" />
+        <ContinueButton
+          path="/bookTypes"
+          onClick={async () => {
+            console.log("send user details");
+          }}
+        />
       </Grid>
     </Header>
   );

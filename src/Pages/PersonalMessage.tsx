@@ -1,6 +1,5 @@
 import {
   Grid,
-  Typography,
   Button,
   useTheme,
   useMediaQuery,
@@ -15,22 +14,31 @@ import { useState } from "react";
 export function PersonalMessage() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isSmallest = useMediaQuery("(max-width: 380px)");
   const [personalMessage, setPersonalMessage] = useState("");
-
-  const buttonStyle = {
-    borderRadius: "49px",
-    boxShadow: "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
-    height: isSmallest ? "50px" : "34px",
-    color: "#BFBDD4DE",
-    padding: "5px 19px",
-    fontWeight: 400,
-  };
 
   return (
     <Header pageNumber={5} path="/themes">
       <Grid item xs={12} textAlign="center">
-        <PageTitle title="Personal-message" />
+        <PageTitle
+          title="Persoonlijke boodschap"
+          subtitle="Laat een persoonlijke boodschap achter voor diegene die het boek krijgt. Dit wordt de eerste pagina van het boek."
+        />
+
+        <Button
+          variant="outlined"
+          sx={{
+            borderRadius: "49px",
+            boxShadow: "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
+            height: "34px",
+            color: "#BFBDD4DE",
+            padding: "5px 19px",
+            fontWeight: 400,
+            marginTop: "20px",
+          }}
+          startIcon={<InfoOutlined fontSize="large" />}
+        >
+          Maximaal 60 woorden
+        </Button>
       </Grid>
 
       <Grid
@@ -41,62 +49,23 @@ export function PersonalMessage() {
         marginBottom={{ xs: "73px", md: "103px" }}
         justifyContent="center"
       >
-        <div
+        <Grid
+          item
+          xs={12}
+          md={6}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            padding: isSmallScreen ? "65px 25px" : "63px 112px",
-            background: "#17142A",
+            padding: "40px 25px",
+            textAlign: "center",
+            backgroundColor: "#17142B",
             borderRadius: "15px",
             boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
-            maxWidth: isSmallest ? "300px" : "763px",
-            height: isSmallest ? "830px" : isSmallScreen ? "786px" : "675px",
           }}
         >
-          <Typography
-            style={{ fontWeight: 600, textAlign: "center" }}
-            fontSize={{ xs: "20px", md: "24px" }}
-          >
-            You can put a personal message for the person reading the book.
-          </Typography>
-
-          <Grid
-            container
-            justifyContent="center"
-            marginTop="35px"
-            direction={{ xs: "column", md: "row" }}
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item>
-              <Button
-                variant="outlined"
-                sx={{
-                  ...buttonStyle,
-                  width: isSmallest ? "256px" : { xs: "327px", md: "auto" },
-                }}
-              >
-                That will be the first page of the book.
-              </Button>
-            </Grid>
-
-            <Grid item>
-              <Button
-                variant="outlined"
-                sx={buttonStyle}
-                startIcon={<InfoOutlined fontSize="large" />}
-              >
-                Maximum words 60
-              </Button>
-            </Grid>
-          </Grid>
-
           <TextField
             sx={{
-              margin: { xs: "55px 0 65px 0", md: "62px 0" },
-              width: isSmallest ? "260px" : { xs: "330px", md: "540px" },
+              margin: { xs: "35px 0", md: "50px 0" },
             }}
+            fullWidth
             multiline
             placeholder={
               isSmallScreen
@@ -115,8 +84,13 @@ export function PersonalMessage() {
             }}
           />
 
-          <ContinueButton path="/summary" />
-        </div>
+          <ContinueButton
+            path="/summary"
+            onClick={async () => {
+              console.log("send personal message");
+            }}
+          />
+        </Grid>
       </Grid>
     </Header>
   );
