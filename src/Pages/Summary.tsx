@@ -123,7 +123,7 @@ export function Summary() {
             boxShadow: "0px 0px 44.6px 0px #8F00FF82",
           }}
           onClick={async () => {
-            console.log("send summary");
+            // create book
             navigate("/billing");
           }}
         >

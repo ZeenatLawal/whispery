@@ -319,7 +319,7 @@ export function BookOwner() {
         <ContinueButton
           path="/members"
           onClick={async () => {
-            console.log("send character details");
+            //send character details
           }}
         />
       </Grid>

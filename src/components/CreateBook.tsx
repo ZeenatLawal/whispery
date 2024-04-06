@@ -8,7 +8,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import CheckIcon from "../assets/checkIcon.png";
-import { useNavigate } from "react-router-dom";
 import Redo from "@mui/icons-material/Redo";
 
 export function CreateBook({
@@ -26,7 +25,6 @@ export function CreateBook({
   previousPrice?: string;
   promoText?: string;
 }) {
-  const navigate = useNavigate();
   const isSmallest = useMediaQuery("(max-width: 380px)");
 
   return (
@@ -152,7 +150,7 @@ export function CreateBook({
             boxShadow: "0px 0px 44.6px 0px #8F00FF82",
           }}
           onClick={() => {
-            navigate("/bookPurchase");
+            // go to payment
           }}
         >
           Bestellen

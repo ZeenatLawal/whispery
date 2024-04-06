@@ -197,7 +197,7 @@ export function ChooseTheme() {
         <ContinueButton
           path="/message"
           onClick={async () => {
-            console.log("send theme", images[activeIndex].value);
+            //send theme: images[activeIndex].value
           }}
         />
       </Grid>

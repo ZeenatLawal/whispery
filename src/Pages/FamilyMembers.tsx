@@ -125,7 +125,7 @@ export function FamilyMembers() {
         <ContinueButton
           path="/events"
           onClick={async () => {
-            console.log("send family members details");
+            // add family members
           }}
         />
       </Grid>

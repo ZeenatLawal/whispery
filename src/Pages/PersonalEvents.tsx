@@ -143,7 +143,7 @@ export function PersonalEvents() {
         <ContinueButton
           path="/themes"
           onClick={async () => {
-            console.log("send event details");
+            // add events
           }}
         />
       </Grid>

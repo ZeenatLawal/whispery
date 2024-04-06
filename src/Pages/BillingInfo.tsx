@@ -96,6 +96,7 @@ export function BillingInfo() {
                 margin: "20px 0",
               }}
               onClick={() => {
+                // send user details
                 if (name && email) {
                   setOpen(true);
                 }
@@ -134,7 +135,7 @@ export function BillingInfo() {
           <ContinueButton
             path="/bookTypes"
             onClick={async () => {
-              console.log("send user details");
+              // verify email and proceed
               setOpen(false);
               setName("");
               setEmail("");

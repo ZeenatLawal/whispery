@@ -87,7 +87,7 @@ export function PersonalMessage() {
           <ContinueButton
             path="/summary"
             onClick={async () => {
-              console.log("send personal message");
+              // send personal message
             }}
           />
         </Grid>
