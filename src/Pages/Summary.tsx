@@ -124,7 +124,7 @@ export function Summary() {
           }}
           onClick={async () => {
             console.log("send summary");
-            navigate("/userDetails");
+            navigate("/billing");
           }}
         >
           De gegevens kloppen

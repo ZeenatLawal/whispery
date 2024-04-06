@@ -46,7 +46,7 @@ export function BookTypes() {
   ];
 
   return (
-    <Header pageNumber={8} path="/userDetails">
+    <Header pageNumber={8} path="/billing">
       <Grid item xs={12} textAlign="center">
         <PageTitle
           title="Kies het type boek"
