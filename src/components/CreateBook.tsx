@@ -5,18 +5,29 @@ import {
   List,
   ListItem,
   ListItemText,
+  useMediaQuery,
 } from "@mui/material";
 import CheckIcon from "../assets/checkIcon.png";
 import { useNavigate } from "react-router-dom";
+import Redo from "@mui/icons-material/Redo";
 
 export function CreateBook({
   bookType,
   bookImage,
+  currentPrice,
+  uniqSP,
+  previousPrice,
+  promoText,
 }: {
   bookType: string;
   bookImage: string;
+  currentPrice: string;
+  uniqSP: string[];
+  previousPrice?: string;
+  promoText?: string;
 }) {
   const navigate = useNavigate();
+  const isSmallest = useMediaQuery("(max-width: 380px)");
 
   return (
     <Grid
@@ -35,111 +46,132 @@ export function CreateBook({
       }}
       margin={{ xs: "25px 0", lg: "0" }}
     >
-      <Typography
-        style={{
-          fontFamily: "Inter, sans-serif",
-          fontWeight: 600,
-          fontSize: "34px",
-        }}
-      >
-        {bookType}
-      </Typography>
+      <Grid item textAlign="center">
+        <Typography
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 600,
+          }}
+          fontSize={{ xs: "24px", md: "30px" }}
+        >
+          {bookType}
+        </Typography>
 
-      <Typography
-        marginTop={2}
-        style={{
-          fontFamily: "Inter, sans-serif",
-          fontWeight: 600,
-        }}
-      >
-        <span
+        <Typography
+          marginTop={2}
+          marginBottom={1}
           style={{
-            fontSize: "20px",
-            textDecoration: "line-through",
-            color: "#FFFFFF5C",
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 600,
           }}
         >
-          29,50{" "}
-        </span>
-        <span
-          style={{
-            fontSize: "30px",
-            color: "#C665F3",
-          }}
-        >
-          19,50
-        </span>
-      </Typography>
+          {previousPrice && (
+            <span
+              style={{
+                fontSize: "20px",
+                textDecoration: "line-through",
+                color: "#FFFFFF5C",
+              }}
+            >
+              {previousPrice}
+            </span>
+          )}
+          <span
+            style={{
+              fontSize: "30px",
+              color: "#C665F3",
+            }}
+          >
+            {currentPrice}
+          </span>
+        </Typography>
+
+        {promoText && (
+          <span
+            style={{
+              padding: "4px 15px",
+              background: "#C665F3",
+              borderRadius: "14px",
+              fontWeight: 600,
+              fontSize: "18px",
+            }}
+          >
+            {promoText}
+          </span>
+        )}
+      </Grid>
 
       <Grid item marginTop="20px">
         <img
           src={bookImage}
           alt="Book"
-          style={{ opacity: bookType === "Digital+Paper" ? "0.08" : "1" }}
+          style={{
+            opacity: bookType === "Digitaal + Hardcover" ? "0.08" : "1",
+          }}
         />
       </Grid>
 
       <List disablePadding sx={{ marginTop: "20px", width: "100%" }}>
-        <ListItem sx={{ paddingLeft: "0", paddingRight: "0" }}>
-          <img
-            src={CheckIcon}
-            alt="CheckIcon"
-            width="20px"
-            style={{ marginRight: "8px" }}
-          />
+        {uniqSP.map((feature) => (
+          <ListItem sx={{ paddingLeft: "0", paddingRight: "0" }}>
+            <img
+              src={CheckIcon}
+              alt="CheckIcon"
+              width="20px"
+              style={{ marginRight: "8px" }}
+            />
 
-          <ListItemText primary="Example feature listed here" />
-        </ListItem>
-        <ListItem sx={{ paddingLeft: "0", paddingRight: "0" }}>
-          <img
-            src={CheckIcon}
-            alt="CheckIcon"
-            width="20px"
-            style={{ marginRight: "8px" }}
-          />
-
-          <ListItemText primary="Example feature listed here" />
-        </ListItem>
-        <ListItem sx={{ paddingLeft: "0", paddingRight: "0" }}>
-          <img
-            src={CheckIcon}
-            alt="CheckIcon"
-            width="20px"
-            style={{ marginRight: "8px" }}
-          />
-
-          <ListItemText primary="Example feature listed here" />
-        </ListItem>
-        <ListItem sx={{ paddingLeft: "0", paddingRight: "0" }}>
-          <img
-            src={CheckIcon}
-            alt="CheckIcon"
-            width="20px"
-            style={{ marginRight: "8px" }}
-          />
-
-          <ListItemText primary="Example feature listed here" />
-        </ListItem>
+            <ListItemText primary={feature} />
+          </ListItem>
+        ))}
       </List>
 
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{
-          height: "48px",
-          borderRadius: "8px",
-          padding: "12px 20px",
-          background: "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
-          fontWeight: 600,
-          fontSize: "16px",
-          marginTop: "20px",
-        }}
-        onClick={() => {
-          navigate("/bookPurchase");
-        }}
-      >
-        Continue
-      </Button>
+      <Grid item textAlign="center" position="relative">
+        {bookType !== "Digitaal" && (
+          <Redo
+            fontSize="large"
+            sx={{
+              transform: "rotate(-50deg)",
+              position: "absolute",
+              top: "38px",
+              left: isSmallest ? "-12px" : 0,
+            }}
+          />
+        )}
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{
+            width: "188px",
+            height: "50px",
+            borderRadius: "36px",
+            fontWeight: 600,
+            fontSize: "18px",
+            background: "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
+            marginTop: "20px",
+            boxShadow: "0px 0px 44.6px 0px #8F00FF82",
+          }}
+          onClick={() => {
+            navigate("/bookPurchase");
+          }}
+        >
+          Bestellen
+        </Button>
+
+        {bookType !== "Digitaal" && (
+          <Typography marginTop={1}>
+            Nu met{" "}
+            <span
+              style={{
+                color: "#C665F3",
+              }}
+            >
+              gratis
+            </span>{" "}
+            cadeau verpakking!
+          </Typography>
+        )}
+      </Grid>
     </Grid>
   );
 }
