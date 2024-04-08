@@ -3,35 +3,36 @@ import {
   Button,
   TextField,
   Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
-  DialogActions,
+  InputLabel,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import { Header } from "../components/Header";
 import { PageTitle } from "../components/PageTitle";
-import { ContinueButton } from "../components/ContinueButton";
-import Close from "@mui/icons-material/Close";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function BillingInfo() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [open, setOpen] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   return (
     <Header pageNumber={7} path="/summary">
       <Grid item xs={12} textAlign="center">
-        <PageTitle title="Facturatie gegevens" />
+        <PageTitle
+          title="Bijna klaar!"
+          subtitle="Wat zijn je voornaam en e-mailadres?"
+        />
       </Grid>
 
       <Grid
-        container
         item
+        container
         xs={12}
         marginTop={{ xs: "45px", md: "80px" }}
-        marginBottom="192px"
         alignItems="center"
         justifyContent="center"
       >
@@ -48,18 +49,10 @@ export function BillingInfo() {
           }}
         >
           <Grid item xs={12}>
-            <Typography
-              style={{ fontWeight: 600, marginBottom: "30px" }}
-              variant="h6"
-              align="center"
-            >
-              Vul de gegevens in die gebruikt moeten worden voor de betaling
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12}>
+            <InputLabel htmlFor="first-name">Voornaam</InputLabel>
             <TextField
-              label="Naam"
+              id="first-name"
+              placeholder="Vul je voornaam in"
               fullWidth
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -71,9 +64,11 @@ export function BillingInfo() {
           </Grid>
 
           <Grid item xs={12}>
+            <InputLabel htmlFor="email">E-mailadres</InputLabel>
             <TextField
+              id="email"
               type="email"
-              label="Email"
+              placeholder="Vul je e-mailadres in"
               fullWidth
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -84,65 +79,72 @@ export function BillingInfo() {
             />
           </Grid>
 
-          <Grid item xs={12} display="flex" justifyContent="center">
-            <Button
-              variant="contained"
+          <Grid item>
+            <FormControlLabel
               sx={{
-                width: "188px",
-                borderRadius: "36px",
-                fontSize: "18px",
-                background:
-                  "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
-                margin: "20px 0",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                margin: "0",
               }}
-              onClick={() => {
-                // send user details
-                if (name && email) {
-                  setOpen(true);
-                }
-              }}
-            >
-              Verifieer Email
-            </Button>
+              control={
+                <Checkbox
+                  sx={{
+                    paddingTop: "2px",
+                    color: "#5256A9A6",
+                    "&.Mui-checked": {
+                      color: "#ED65F3",
+                    },
+                  }}
+                  checked={acceptTerms}
+                  onChange={(e) => {
+                    setAcceptTerms(e.target.checked);
+                  }}
+                />
+              }
+              label={
+                <Typography>
+                  Ik ga akkoord met de algemene voorwaarden en het
+                  privacybeleid.
+                </Typography>
+              }
+            />
           </Grid>
         </Grid>
       </Grid>
 
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        PaperProps={{ sx: { background: "#17142B", color: "#fff" } }}
+      <Grid
+        container
+        justifyContent="center"
+        marginTop={{ xs: "118px", md: "139.5px" }}
       >
-        <DialogTitle>Verifieer Email</DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={() => setOpen(false)}
+        <Button
+          variant="contained"
           sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: "#fff",
+            width: "188px",
+            height: "50px",
+            borderRadius: "36px",
+            fontWeight: 600,
+            fontSize: "18px",
+            background: "linear-gradient(90deg, #718DF4 14.67%, #ED65F3 100%)",
+            marginBottom: "30px",
+            boxShadow: "0px 0px 44.6px 0px #8F00FF82",
+            opacity: acceptTerms ? "1" : "0.4",
           }}
-        >
-          <Close />
-        </IconButton>
-        <DialogContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum sint
-          sapiente nisi autem nam velit ab et! Optio nulla iusto quia cum quidem
-          dolorem accusantium enim veritatis saepe, tempora adipisci.
-        </DialogContent>
-        <DialogActions>
-          <ContinueButton
-            path="/bookTypes"
-            onClick={async () => {
+          endIcon={<ArrowRightAltIcon fontSize="large" />}
+          onClick={async () => {
+            if (name && email && acceptTerms) {
               // verify email and proceed
-              setOpen(false);
+
               setName("");
               setEmail("");
-            }}
-          />
-        </DialogActions>
-      </Dialog>
+              navigate("/bookTypes");
+            }
+          }}
+        >
+          Volgende
+        </Button>
+      </Grid>
     </Header>
   );
 }
