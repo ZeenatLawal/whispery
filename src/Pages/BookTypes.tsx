@@ -18,6 +18,7 @@ export function BookTypes() {
         "Tablet en smartphone vriendelijk",
         "Levertijd binnen 48 uur",
       ],
+      link: "https://whispery.ai/checkout/?add-to-cart=1109&quantity=1",
     },
     {
       bookType: "Hardcover",
@@ -30,6 +31,7 @@ export function BookTypes() {
         "Gratis verzending",
         "Levertijd binnen 2 weken",
       ],
+      link: "https://whispery.ai/checkout/?add-to-cart=1114&quantity[1110]=1&quantity[1113]=1",
     },
     {
       bookType: "Digitaal + Hardcover",
@@ -42,6 +44,7 @@ export function BookTypes() {
         "15% korting",
       ],
       promoText: "Meest gekozen",
+      link: "https://whispery.ai/checkout/?add-to-cart=1115&quantity[1111]=1&quantity[1113]=1",
     },
   ];
 
@@ -70,6 +73,7 @@ export function BookTypes() {
             uniqSP,
             previousPrice,
             promoText,
+            link,
           }) => (
             <CreateBook
               bookType={bookType}
@@ -78,6 +82,7 @@ export function BookTypes() {
               uniqSP={uniqSP}
               previousPrice={previousPrice}
               promoText={promoText}
+              link={link}
             />
           )
         )}

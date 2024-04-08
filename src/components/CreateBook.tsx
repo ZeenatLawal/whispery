@@ -17,6 +17,7 @@ export function CreateBook({
   uniqSP,
   previousPrice,
   promoText,
+  link,
 }: {
   bookType: string;
   bookImage: string;
@@ -24,6 +25,7 @@ export function CreateBook({
   uniqSP: string[];
   previousPrice?: string;
   promoText?: string;
+  link: string;
 }) {
   const isSmallest = useMediaQuery("(max-width: 380px)");
 
@@ -150,7 +152,7 @@ export function CreateBook({
             boxShadow: "0px 0px 44.6px 0px #8F00FF82",
           }}
           onClick={() => {
-            // go to payment
+            window.open(`${link}`, "_self");
           }}
         >
           Bestellen
