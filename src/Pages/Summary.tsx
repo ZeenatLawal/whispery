@@ -1,6 +1,5 @@
 import {
   Grid,
-  useTheme,
   useMediaQuery,
   Typography,
   List,
@@ -9,13 +8,12 @@ import {
 } from "@mui/material";
 import { Header } from "../components/Header";
 import { PageTitle } from "../components/PageTitle";
+import InfoOutlined from "@mui/icons-material/InfoOutlined";
 import { useNavigate } from "react-router-dom";
 
 export function Summary() {
-  const theme = useTheme();
   const navigate = useNavigate();
   const isSmallest = useMediaQuery("(max-width: 380px)");
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const textStyle = {
     color: "#D1BBED",
@@ -27,6 +25,22 @@ export function Summary() {
     <Header pageNumber={6} path="/message">
       <Grid item xs={12} textAlign="center">
         <PageTitle title="Wauw, dat wordt een gaaf boek!" />
+        <Button
+          variant="outlined"
+          sx={{
+            borderRadius: "49px",
+            boxShadow: "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
+            height: "34px",
+            color: "#BFBDD4DE",
+            padding: "5px 19px",
+            fontWeight: 400,
+            marginTop: "20px",
+            background: "#17142A",
+          }}
+          startIcon={<InfoOutlined fontSize="large" />}
+        >
+          Nog even ter controle
+        </Button>
       </Grid>
 
       <Grid
@@ -41,67 +55,50 @@ export function Summary() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            padding: isSmallScreen ? "31px 25px" : "50px 103px",
+            padding: "30px",
             background: "#17142A",
             borderRadius: "15px",
             boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
             maxWidth: isSmallest ? "300px" : "824px",
-            height: "520px",
+            textAlign: "center",
           }}
         >
-          <Typography
-            style={{
-              fontWeight: 600,
-              textAlign: "center",
-              fontSize: "24px",
-              marginBottom: "47px",
-            }}
-          >
-            Nog even ter controle:
+          <Typography style={textStyle}>
+            Als ik het goed begrijp wil je een boek laten maken voor [NAME], een
+            [GENDER] van [AGE]. Het gezin bestaat uit [FAMILY MEMBER 1], [FAMILY
+            MEMBER 2] en [FAMILY MEMBER 3]. Het boek krijgt een [THEME] thema
+            waarin de volgende persoonlijke gebeurtenissen worden meegenomen:
           </Typography>
 
-          <div
+          <List>
+            <ListItem>
+              <Typography style={textStyle}>
+                <strong>1. </strong> [PERSONAL EVENT 1]
+              </Typography>
+            </ListItem>
+
+            <ListItem>
+              <Typography style={textStyle}>
+                <strong>2. </strong> [PERSONAL EVENT 2]
+              </Typography>
+            </ListItem>
+
+            <ListItem>
+              <Typography style={textStyle}>
+                <strong>3. </strong> [PERSONAL EVENT 3]
+              </Typography>
+            </ListItem>
+          </List>
+
+          <Typography
             style={{
-              overflow: "auto",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              fontWeight: 500,
+              fontSize: "14px",
             }}
           >
-            <Typography style={textStyle}>
-              Als ik het goed begrijp wil je een boek laten maken voor [NAME],
-              een [GENDER] van [AGE]. Het gezin bestaat uit [FAMILY MEMBER 1],
-              [FAMILY MEMBER 2] en [FAMILY MEMBER 3]. Het boek krijgt een
-              [THEME] thema waarin de volgende persoonlijke gebeurtenissen
-              worden meegenomen:
-            </Typography>
-
-            <List>
-              <ListItem>
-                <Typography style={textStyle}>
-                  <strong>1. </strong> [PERSONAL EVENT 1]
-                </Typography>
-              </ListItem>
-
-              <ListItem>
-                <Typography style={textStyle}>
-                  <strong>2. </strong> [PERSONAL EVENT 2]
-                </Typography>
-              </ListItem>
-
-              <ListItem>
-                <Typography style={textStyle}>
-                  <strong>3. </strong> [PERSONAL EVENT 3]
-                </Typography>
-              </ListItem>
-            </List>
-
-            <Typography style={textStyle}>
-              Klopt dit niet? Ga dan terug naar de vorige stappen en pas de
-              gegevens aan.
-            </Typography>
-          </div>
+            Klopt dit niet? Ga dan terug naar de vorige stappen en pas de
+            gegevens aan.
+          </Typography>
         </div>
       </Grid>
 
