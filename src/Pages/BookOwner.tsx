@@ -313,7 +313,7 @@ export function BookOwner() {
 
       <Grid
         container
-        justifyContent={{ xs: "center", md: "flex-end" }}
+        justifyContent="center"
         marginTop={{ xs: "40px", md: "80px" }}
       >
         <ContinueButton

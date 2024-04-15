@@ -191,7 +191,7 @@ export function ChooseTheme() {
 
       <Grid
         container
-        justifyContent={{ xs: "center", md: "flex-end" }}
+        justifyContent="center"
         marginTop={{ xs: "127px", md: "92px" }}
       >
         <ContinueButton

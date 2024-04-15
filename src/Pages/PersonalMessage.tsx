@@ -45,8 +45,8 @@ export function PersonalMessage() {
         item
         container
         xs={12}
-        marginTop={{ xs: "55px", md: "80px" }}
-        marginBottom={{ xs: "73px", md: "103px" }}
+        marginTop="25px"
+        alignItems="center"
         justifyContent="center"
       >
         <Grid
@@ -62,9 +62,6 @@ export function PersonalMessage() {
           }}
         >
           <TextField
-            sx={{
-              margin: { xs: "35px 0", md: "50px 0" },
-            }}
             fullWidth
             multiline
             placeholder={
@@ -83,14 +80,20 @@ export function PersonalMessage() {
               }
             }}
           />
-
-          <ContinueButton
-            path="/summary"
-            onClick={async () => {
-              // send personal message
-            }}
-          />
         </Grid>
+      </Grid>
+
+      <Grid
+        container
+        justifyContent="center"
+        marginTop={{ xs: "118px", md: "139.5px" }}
+      >
+        <ContinueButton
+          path="/summary"
+          onClick={async () => {
+            // send personal message
+          }}
+        />
       </Grid>
     </Header>
   );
