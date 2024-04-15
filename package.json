@@ -14,12 +14,14 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-gtm-module": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-gtm-module": "latest",
     "react-router-dom": "latest",
     "react-scripts": "latest",
     "typescript": "latest",
-    "web-vitals": "latest" 
+    "web-vitals": "latest"
   },
   "scripts": {
     "start": "tsc -b && react-scripts start",

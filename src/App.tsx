@@ -10,6 +10,7 @@ import { Summary } from "./Pages/Summary";
 import { BookTypes } from "./Pages/BookTypes";
 import { ReactNode, useEffect } from "react";
 import { BillingInfo } from "./Pages/BillingInfo";
+import TagManager from "react-gtm-module";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -107,6 +108,11 @@ function ScrollToTop({ children }: { children: ReactNode }) {
 }
 
 function App() {
+  useEffect(() => {
+    // Initialize Google Tag Manager
+    TagManager.initialize({ gtmId: "G-5KV909GE0Z" });
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
