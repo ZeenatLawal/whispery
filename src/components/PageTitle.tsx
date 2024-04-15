@@ -15,7 +15,7 @@ export function PageTitle({
       >
         {title}
       </Typography>
-      <Typography variant="subtitle1">{subtitle}</Typography>
+      <Typography fontSize={{ xs: "14px", md: "16px" }}>{subtitle}</Typography>
     </>
   );
 }
