@@ -96,7 +96,7 @@ export function BookOwner() {
                       return `${selected} jaar`;
                     }}
                   >
-                    {[...Array(100)].map((_, index) => (
+                    {[...Array(12)].map((_, index) => (
                       <MenuItem key={index + 1} value={index + 1}>
                         {index + 1}
                       </MenuItem>
@@ -233,10 +233,46 @@ export function BookOwner() {
                         return selected;
                       }}
                     >
-                      <MenuItem value="Blonde">Blond</MenuItem>
-                      <MenuItem value="Brown">Bruin</MenuItem>
-                      <MenuItem value="Dark">Donker</MenuItem>
-                      <MenuItem value="Red">Rood</MenuItem>
+                      <MenuItem value="Blonde">
+                        <Chip
+                          style={{
+                            backgroundColor: "#F1CC8F",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Blond
+                      </MenuItem>
+                      <MenuItem value="Brown">
+                        <Chip
+                          style={{
+                            backgroundColor: "#684C3D",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Bruin
+                      </MenuItem>
+                      <MenuItem value="Dark">
+                        <Chip
+                          style={{
+                            backgroundColor: "#3A2001",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Donker
+                      </MenuItem>
+                      <MenuItem value="Red">
+                        <Chip
+                          style={{
+                            backgroundColor: "#5E0808",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Rood
+                      </MenuItem>
                     </Select>
                   </Grid>
                 </Grid>
@@ -258,9 +294,36 @@ export function BookOwner() {
                         return selected;
                       }}
                     >
-                      <MenuItem value="Blue">Blauw</MenuItem>
-                      <MenuItem value="Green">Groen</MenuItem>
-                      <MenuItem value="Brown">Bruin</MenuItem>
+                      <MenuItem value="Blue">
+                        <Chip
+                          style={{
+                            backgroundColor: "#355BF5",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Blauw
+                      </MenuItem>
+                      <MenuItem value="Green">
+                        <Chip
+                          style={{
+                            backgroundColor: "#79B465",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Groen
+                      </MenuItem>
+                      <MenuItem value="Brown">
+                        <Chip
+                          style={{
+                            backgroundColor: "#684C3D",
+                            height: "25px",
+                            marginRight: "10px",
+                          }}
+                        />
+                        Bruin
+                      </MenuItem>
                     </Select>
                   </Grid>
 
