@@ -65,7 +65,7 @@ export function FamilyMembers() {
             sx={{
               borderRadius: "31px",
               boxShadow: "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
-              width: isSmallest ? "300px" : { xs: "380px", md: "320px" },
+              width: isSmallest ? "280px" : "320px",
               height: "50px",
             }}
             startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}

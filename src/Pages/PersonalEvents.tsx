@@ -79,9 +79,10 @@ export function PersonalEvents() {
           <Button
             variant="outlined"
             sx={{
+              padding: "5px 0",
               borderRadius: "31px",
               boxShadow: "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
-              width: isSmallest ? "300px" : { xs: "380px", md: "320px" },
+              width: isSmallest ? "280px" : "320px",
               height: "50px",
               "&:disabled": { opacity: "0.4" },
             }}
