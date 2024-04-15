@@ -135,7 +135,7 @@ export function Header({
         container
         width={{ xs: "calc(100vw - 50px)", md: "calc(100vw - 200px)" }}
         minHeight="calc(100vh - 107px)"
-        paddingTop={{ xs: "45px", md: "70px" }}
+        paddingTop={{ xs: "15px", md: "70px" }}
         margin="108px auto 0px"
       >
         {children}
