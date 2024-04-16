@@ -10,16 +10,25 @@ import { Header } from "../components/Header";
 import { PageTitle } from "../components/PageTitle";
 import InfoOutlined from "@mui/icons-material/InfoOutlined";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { BookContext } from "../contexts/BookContext";
 
 export function Summary() {
   const navigate = useNavigate();
   const isSmallest = useMediaQuery("(max-width: 380px)");
+  const { bookData, familyMembers, personalEvents } = useContext(BookContext);
 
   const textStyle = {
     color: "#D1BBED",
     fontWeight: 500,
     fontSize: "18px",
   };
+
+  let familySentence = "Het gezin bestaat uit " + familyMembers.join(", ");
+
+  if (familyMembers.length > 1) {
+    familySentence = familySentence.replace(/,([^,]*)$/, " en$1");
+  }
 
   return (
     <Header pageNumber={6} path="/message">
@@ -64,30 +73,21 @@ export function Summary() {
           }}
         >
           <Typography style={textStyle}>
-            Als ik het goed begrijp wil je een boek laten maken voor [NAME], een
-            [GENDER] van [AGE]. Het gezin bestaat uit [FAMILY MEMBER 1], [FAMILY
-            MEMBER 2] en [FAMILY MEMBER 3]. Het boek krijgt een [THEME] thema
-            waarin de volgende persoonlijke gebeurtenissen worden meegenomen:
+            Als ik het goed begrijp wil je een boek laten maken voor{" "}
+            {bookData.firstName}, een
+            {bookData.gender} van {bookData.age}. {familySentence}. Het boek
+            krijgt een {bookData.theme} thema waarin de volgende persoonlijke
+            gebeurtenissen worden meegenomen:
           </Typography>
 
           <List>
-            <ListItem>
-              <Typography style={textStyle}>
-                <strong>1. </strong> [PERSONAL EVENT 1]
-              </Typography>
-            </ListItem>
-
-            <ListItem>
-              <Typography style={textStyle}>
-                <strong>2. </strong> [PERSONAL EVENT 2]
-              </Typography>
-            </ListItem>
-
-            <ListItem>
-              <Typography style={textStyle}>
-                <strong>3. </strong> [PERSONAL EVENT 3]
-              </Typography>
-            </ListItem>
+            {personalEvents.map((event, index) => (
+              <ListItem key={index}>
+                <Typography style={textStyle}>
+                  <strong>{index + 1}. </strong> {event}
+                </Typography>
+              </ListItem>
+            ))}
           </List>
 
           <Typography

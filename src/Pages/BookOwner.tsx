@@ -8,24 +8,18 @@ import {
   MenuItem,
   Chip,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext } from "react";
 import ownerImg from "../assets/ownerImg.png";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import { PageTitle } from "../components/PageTitle";
+import { BookContext } from "../contexts/BookContext";
 
 export function BookOwner() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isMidScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const [firstName, setFirstName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [skinColor, setSkinColor] = useState("");
-  const [hairStyle, setHairStyle] = useState("");
-  const [hairColor, setHairColor] = useState("");
-  const [eyeColor, setEyeColor] = useState("");
-  const [glasses, setGlasses] = useState("");
+  const { bookData, handleBookData } = useContext(BookContext);
 
   const menuItemStyle = {
     MenuProps: {
@@ -75,8 +69,10 @@ export function BookOwner() {
                     id="first-name"
                     placeholder="Bijv. Isabel"
                     fullWidth
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    value={bookData.firstName}
+                    onChange={(e) => {
+                      handleBookData("firstName", e.target.value);
+                    }}
                   />
                 </Grid>
 
@@ -87,8 +83,10 @@ export function BookOwner() {
                     fullWidth
                     displayEmpty
                     inputProps={menuItemStyle}
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
+                    value={bookData.age}
+                    onChange={(e) => {
+                      handleBookData("age", e.target.value);
+                    }}
                     renderValue={(selected) => {
                       if (selected === "") {
                         return "Bijv. 8 jaar";
@@ -112,8 +110,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value)}
+                      value={bookData.gender}
+                      onChange={(e) => {
+                        handleBookData("gender", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Meisje";
@@ -133,8 +133,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={skinColor}
-                      onChange={(e) => setSkinColor(e.target.value)}
+                      value={bookData.skinColor}
+                      onChange={(e) => {
+                        handleBookData("skinColor", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Licht";
@@ -184,8 +186,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={hairStyle}
-                      onChange={(e) => setHairStyle(e.target.value)}
+                      value={bookData.hairStyle}
+                      onChange={(e) => {
+                        handleBookData("hairStyle", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Kort, krullend haar";
@@ -222,8 +226,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={hairColor}
-                      onChange={(e) => setHairColor(e.target.value)}
+                      value={bookData.hairColor}
+                      onChange={(e) => {
+                        handleBookData("hairColor", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Bruin";
@@ -283,8 +289,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={eyeColor}
-                      onChange={(e) => setEyeColor(e.target.value)}
+                      value={bookData.eyeColor}
+                      onChange={(e) => {
+                        handleBookData("eyeColor", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Bruin";
@@ -332,8 +340,10 @@ export function BookOwner() {
                       fullWidth
                       displayEmpty
                       inputProps={menuItemStyle}
-                      value={glasses}
-                      onChange={(e) => setGlasses(e.target.value)}
+                      value={bookData.glasses}
+                      onChange={(e) => {
+                        handleBookData("glasses", e.target.value);
+                      }}
                       renderValue={(selected) => {
                         if (selected === "") {
                           return "Bijv. Ja";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Grid,
   Button,
@@ -13,11 +13,12 @@ import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import AddIcon from "@mui/icons-material/Add";
 import { PageTitle } from "../components/PageTitle";
+import { BookContext } from "../contexts/BookContext";
 
 export function FamilyMembers() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
   const [member, setMember] = useState("");
-  const [family, setFamily] = useState<string[]>([]);
+  const { familyMembers, setFamilyMembers } = useContext(BookContext);
 
   return (
     <Header pageNumber={2} path="/">
@@ -48,7 +49,7 @@ export function FamilyMembers() {
           }}
         >
           <InputLabel htmlFor="first-member">
-            Gezinslid {family.length + 1}
+            Gezinslid {familyMembers.length + 1}
           </InputLabel>
           <TextField
             id="first-member"
@@ -70,13 +71,7 @@ export function FamilyMembers() {
             }}
             startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}
             onClick={() => {
-              setFamily((prevFamily) => {
-                if (prevFamily.includes(member)) {
-                  return prevFamily;
-                } else {
-                  return [...prevFamily, member];
-                }
-              });
+              setFamilyMembers(member);
               setMember("");
             }}
           >
@@ -94,7 +89,7 @@ export function FamilyMembers() {
           </Button>
         </Grid>
 
-        {family.length > 0 && (
+        {familyMembers.length > 0 && (
           <div
             style={{
               padding: "25px 40px",
@@ -105,7 +100,7 @@ export function FamilyMembers() {
             }}
           >
             <List component="ol">
-              {family.map((fam, index) => (
+              {familyMembers.map((fam, index) => (
                 <ListItem key={index} component="li">
                   <Typography>
                     <strong>{index + 1}. </strong> {fam}

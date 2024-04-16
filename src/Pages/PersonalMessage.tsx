@@ -9,12 +9,13 @@ import InfoOutlined from "@mui/icons-material/InfoOutlined";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import { PageTitle } from "../components/PageTitle";
-import { useState } from "react";
+import { useContext } from "react";
+import { BookContext } from "../contexts/BookContext";
 
 export function PersonalMessage() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const [personalMessage, setPersonalMessage] = useState("");
+  const { bookData, handleBookData } = useContext(BookContext);
 
   return (
     <Header pageNumber={5} path="/themes">
@@ -71,12 +72,12 @@ export function PersonalMessage() {
                 : `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer arcu erat, elementum vitae laoreet finibus, sagittis vel leo. Nam facilisis magna ligula, ut blandit ipsum ornare id. Integer ornare enim a massa elementum malesuada.
             Vivamus augue ipsum, hendrerit et neque sed, tincidunt dapibus ante. Nulla vitae ante volutpat ex dictum eleifend volutpat in velit. Ut non enim vel orci condimentum blandit sit amet sed nunc. Donec tincidunt vehicula finibus.`
             }
-            value={personalMessage}
+            value={bookData.personalMsg}
             onChange={(e) => {
               const message = e.target.value;
               const wordCount = message.trim().split(/\s+/).length;
               if (wordCount <= 60) {
-                setPersonalMessage(message);
+                handleBookData("personalMsg", message);
               }
             }}
           />

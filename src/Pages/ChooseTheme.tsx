@@ -6,7 +6,7 @@ import {
   Card,
   IconButton,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import { PageTitle } from "../components/PageTitle";
@@ -29,6 +29,7 @@ import Castles from "../assets/castles.png";
 import CandyWorld from "../assets/candyWorld.png";
 import MagicSchool from "../assets/magicSchool.png";
 import WildWest from "../assets/wildWest.png";
+import { BookContext } from "../contexts/BookContext";
 
 const images = [
   { caption: "Jungle", value: "Jungle", img: Jungle },
@@ -54,6 +55,7 @@ export function ChooseTheme() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { bookData, handleBookData } = useContext(BookContext);
 
   const iconStyle = {
     border: "1px solid",
@@ -64,6 +66,13 @@ export function ChooseTheme() {
     color: "#C665F3",
     "&:disabled": { color: "#25234B", borderColor: "#3C4C6C" },
   };
+
+  useEffect(() => {
+    const getThemeIndex = images.findIndex(
+      (img) => img.caption === bookData.theme
+    );
+    setActiveIndex(getThemeIndex);
+  }, []);
 
   useEffect(() => {
     // Scroll to the active theme when it changes
@@ -198,6 +207,7 @@ export function ChooseTheme() {
           path="/message"
           onClick={async () => {
             //send theme: images[activeIndex].value
+            handleBookData("theme", images[activeIndex].caption);
           }}
         />
       </Grid>

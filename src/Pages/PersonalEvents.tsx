@@ -8,17 +8,18 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import { PageTitle } from "../components/PageTitle";
+import { BookContext } from "../contexts/BookContext";
 
 export function PersonalEvents() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
-  const [personalEvent, setPersonalEvent] = useState("");
-  const [allEvents, setAllEvents] = useState<string[]>([]);
+  const [event, setEvent] = useState("");
+  const { personalEvents, setPersonalEvents } = useContext(BookContext);
 
   return (
     <Header pageNumber={3} path="/members">
@@ -64,14 +65,14 @@ export function PersonalEvents() {
           }}
         >
           <InputLabel htmlFor="add-event">
-            Gebeurtenis {allEvents.length + 1}
+            Gebeurtenis {personalEvents.length + 1}
           </InputLabel>
           <TextField
             id="add-event"
             placeholder="Bijv. Het gezin krijgt binnenkort een puppy"
             fullWidth
-            value={personalEvent}
-            onChange={(e) => setPersonalEvent(e.target.value)}
+            value={event}
+            onChange={(e) => setEvent(e.target.value)}
           />
         </Grid>
 
@@ -88,16 +89,10 @@ export function PersonalEvents() {
             }}
             startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}
             onClick={() => {
-              setAllEvents((prevEvent) => {
-                if (prevEvent.includes(personalEvent)) {
-                  return prevEvent;
-                } else {
-                  return [...prevEvent, personalEvent];
-                }
-              });
-              setPersonalEvent("");
+              setPersonalEvents(event);
+              setEvent("");
             }}
-            disabled={allEvents.length === 3}
+            disabled={personalEvents.length === 3}
           >
             <div
               style={{
@@ -113,7 +108,7 @@ export function PersonalEvents() {
           </Button>
         </Grid>
 
-        {allEvents.length > 0 && (
+        {personalEvents.length > 0 && (
           <div
             style={{
               padding: "25px 40px",
@@ -124,7 +119,7 @@ export function PersonalEvents() {
             }}
           >
             <List component="ol">
-              {allEvents.map((event, index) => (
+              {personalEvents.map((event, index) => (
                 <ListItem key={index} component="li">
                   <Typography>
                     <strong>{index + 1}. </strong> {event}
