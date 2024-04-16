@@ -70,7 +70,9 @@ export function Header({
                 navigate(path);
               }}
             >
-              <KeyboardBackspaceIcon fontSize="large" />
+              {location.pathname !== "/" && (
+                <KeyboardBackspaceIcon fontSize="large" />
+              )}
             </IconButton>
           )}
 
