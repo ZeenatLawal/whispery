@@ -73,7 +73,7 @@ export function BookOwner() {
                   <InputLabel htmlFor="first-name">Voornaam</InputLabel>
                   <TextField
                     id="first-name"
-                    placeholder="Bjiv. Isabel"
+                    placeholder="Bijv. Isabel"
                     fullWidth
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -91,7 +91,7 @@ export function BookOwner() {
                     onChange={(e) => setAge(e.target.value)}
                     renderValue={(selected) => {
                       if (selected === "") {
-                        return "Bjiv. 8 jaar";
+                        return "Bijv. 8 jaar";
                       }
                       return `${selected} jaar`;
                     }}
@@ -116,13 +116,13 @@ export function BookOwner() {
                       onChange={(e) => setGender(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Meisje";
+                          return "Bijv. Meisje";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Girl">Meisje</MenuItem>
-                      <MenuItem value="Boy">Jongen</MenuItem>
+                      <MenuItem value="Meisje">Meisje</MenuItem>
+                      <MenuItem value="Jongen">Jongen</MenuItem>
                     </Select>
                   </Grid>
 
@@ -137,12 +137,12 @@ export function BookOwner() {
                       onChange={(e) => setSkinColor(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Licht";
+                          return "Bijv. Licht";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Light">
+                      <MenuItem value="Licht">
                         <Chip
                           style={{
                             backgroundColor: "#FFD4A1",
@@ -162,7 +162,7 @@ export function BookOwner() {
                         />
                         Medium
                       </MenuItem>
-                      <MenuItem value="Dark">
+                      <MenuItem value="Donker">
                         <Chip
                           style={{
                             backgroundColor: "#3A2001",
@@ -188,30 +188,28 @@ export function BookOwner() {
                       onChange={(e) => setHairStyle(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Kort, krullend haar";
+                          return "Bijv. Kort, krullend haar";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Very short/bald">
-                        Heel kort/kaal
-                      </MenuItem>
-                      <MenuItem value="Short, straight hair">
+                      <MenuItem value="Heel kort/kaal">Heel kort/kaal</MenuItem>
+                      <MenuItem value="Kort, stijl haar">
                         Kort, stijl haar
                       </MenuItem>
-                      <MenuItem value="Short, curly hair">
+                      <MenuItem value="Kort, krullend haar">
                         Kort, krullend haar
                       </MenuItem>
-                      <MenuItem value="Medium length, straight hair">
+                      <MenuItem value="Halflang, stijl haar">
                         Halflang, stijl haar
                       </MenuItem>
-                      <MenuItem value="Medium Length, curly hair">
+                      <MenuItem value="Halflang, krullend haar">
                         Halflang, krullend haar
                       </MenuItem>
-                      <MenuItem value="Long, straight hair">
+                      <MenuItem value="Lang, stijl haar">
                         Lang, stijl haar
                       </MenuItem>
-                      <MenuItem value="Long, curly hair">
+                      <MenuItem value="Lang, krullend haar">
                         Lang, krullend haar
                       </MenuItem>
                     </Select>
@@ -228,12 +226,12 @@ export function BookOwner() {
                       onChange={(e) => setHairColor(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Bruin";
+                          return "Bijv. Bruin";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Blonde">
+                      <MenuItem value="Blond">
                         <Chip
                           style={{
                             backgroundColor: "#F1CC8F",
@@ -243,7 +241,7 @@ export function BookOwner() {
                         />
                         Blond
                       </MenuItem>
-                      <MenuItem value="Brown">
+                      <MenuItem value="Bruin">
                         <Chip
                           style={{
                             backgroundColor: "#684C3D",
@@ -253,17 +251,17 @@ export function BookOwner() {
                         />
                         Bruin
                       </MenuItem>
-                      <MenuItem value="Dark">
+                      <MenuItem value="Donker">
                         <Chip
                           style={{
-                            backgroundColor: "#3A2001",
+                            backgroundColor: "#000",
                             height: "25px",
                             marginRight: "10px",
                           }}
                         />
                         Donker
                       </MenuItem>
-                      <MenuItem value="Red">
+                      <MenuItem value="Rood">
                         <Chip
                           style={{
                             backgroundColor: "#5E0808",
@@ -289,12 +287,12 @@ export function BookOwner() {
                       onChange={(e) => setEyeColor(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Bruin";
+                          return "Bijv. Bruin";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Blue">
+                      <MenuItem value="Blauw">
                         <Chip
                           style={{
                             backgroundColor: "#355BF5",
@@ -304,7 +302,7 @@ export function BookOwner() {
                         />
                         Blauw
                       </MenuItem>
-                      <MenuItem value="Green">
+                      <MenuItem value="Groen">
                         <Chip
                           style={{
                             backgroundColor: "#79B465",
@@ -314,7 +312,7 @@ export function BookOwner() {
                         />
                         Groen
                       </MenuItem>
-                      <MenuItem value="Brown">
+                      <MenuItem value="Bruin">
                         <Chip
                           style={{
                             backgroundColor: "#684C3D",
@@ -338,13 +336,13 @@ export function BookOwner() {
                       onChange={(e) => setGlasses(e.target.value)}
                       renderValue={(selected) => {
                         if (selected === "") {
-                          return "Bjiv. Ja";
+                          return "Bijv. Ja";
                         }
                         return selected;
                       }}
                     >
-                      <MenuItem value="Yes">Ja</MenuItem>
-                      <MenuItem value="No">Nee</MenuItem>
+                      <MenuItem value="Ja">Ja</MenuItem>
+                      <MenuItem value="Nee">Nee</MenuItem>
                     </Select>
                   </Grid>
                 </Grid>

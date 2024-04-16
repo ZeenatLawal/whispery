@@ -52,7 +52,7 @@ export function FamilyMembers() {
           </InputLabel>
           <TextField
             id="first-member"
-            placeholder="Bjiv. Moeder Evelien"
+            placeholder="Bijv. Moeder Evelien"
             fullWidth
             value={member}
             onChange={(e) => setMember(e.target.value)}
