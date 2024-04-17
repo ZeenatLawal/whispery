@@ -8,17 +8,20 @@ import {
   Typography,
   List,
   ListItem,
+  IconButton,
 } from "@mui/material";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { PageTitle } from "../components/PageTitle";
 import { BookContext } from "../contexts/BookContext";
 
 export function FamilyMembers() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
   const [member, setMember] = useState("");
-  const { familyMembers, setFamilyMembers } = useContext(BookContext);
+  const { familyMembers, addFamilyMember, removeFamilyMember } =
+    useContext(BookContext);
 
   return (
     <Header pageNumber={2} path="/">
@@ -71,7 +74,7 @@ export function FamilyMembers() {
             }}
             startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}
             onClick={() => {
-              setFamilyMembers(member);
+              addFamilyMember(member);
               setMember("");
             }}
           >
@@ -84,7 +87,7 @@ export function FamilyMembers() {
                 fontSize: "16px",
               }}
             >
-              Voeg nog een gezinslid toe
+              Voeg dit gezinslid toe
             </div>
           </Button>
         </Grid>
@@ -99,12 +102,22 @@ export function FamilyMembers() {
               boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
             }}
           >
-            <List component="ol">
+            <List>
               {familyMembers.map((fam, index) => (
-                <ListItem key={index} component="li">
+                <ListItem
+                  key={index}
+                  style={{ justifyContent: "space-between" }}
+                >
                   <Typography>
                     <strong>{index + 1}. </strong> {fam}
                   </Typography>
+                  <IconButton
+                    onClick={() => {
+                      removeFamilyMember(familyMembers[index]);
+                    }}
+                  >
+                    <DeleteIcon color="error" />
+                  </IconButton>
                 </ListItem>
               ))}
             </List>

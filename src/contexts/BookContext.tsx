@@ -16,9 +16,11 @@ interface BookData {
 export const BookContext = createContext<{
   bookData: BookData;
   familyMembers: string[];
-  setFamilyMembers: (familyMember: string) => void;
+  addFamilyMember: (familyMember: string) => void;
+  removeFamilyMember: (familyMember: string) => void;
   personalEvents: string[];
-  setPersonalEvents: (personalEvent: string) => void;
+  addPersonalEvent: (personalEvent: string) => void;
+  removePersonalEvent: (personalEvent: string) => void;
   handleBookData: (name: string, value: string) => void;
 }>({
   bookData: {
@@ -34,9 +36,11 @@ export const BookContext = createContext<{
     personalMsg: "",
   },
   familyMembers: [],
-  setFamilyMembers: () => {},
+  addFamilyMember: () => {},
+  removeFamilyMember: () => {},
   personalEvents: [],
-  setPersonalEvents: () => {},
+  addPersonalEvent: () => {},
+  removePersonalEvent: () => {},
   handleBookData: (name: string, value: string) => {},
 });
 
@@ -64,7 +68,7 @@ export function BookContextProvider({
     setBookData({ ...bookData, [name]: value });
   }
 
-  function handleAddFamilyMember(newFamilyMember: string) {
+  function addFamilyMember(newFamilyMember: string) {
     setFamilyMembers((prevFamilyMembers) => {
       if (prevFamilyMembers.includes(newFamilyMember)) {
         return prevFamilyMembers;
@@ -74,7 +78,14 @@ export function BookContextProvider({
     });
   }
 
-  function handleAddPersonalEvent(newPersonalEvent: string) {
+  function removeFamilyMember(familyMember: string) {
+    const newFamArray = familyMembers.filter(
+      (member) => member !== familyMember
+    );
+    setFamilyMembers([...newFamArray]);
+  }
+
+  function addPersonalEvent(newPersonalEvent: string) {
     setPersonalEvents((prevEvent) => {
       if (prevEvent.includes(newPersonalEvent)) {
         return prevEvent;
@@ -84,15 +95,24 @@ export function BookContextProvider({
     });
   }
 
+  function removePersonalEvent(personalEvent: string) {
+    const newEventArray = personalEvents.filter(
+      (event) => event !== personalEvent
+    );
+    setPersonalEvents([...newEventArray]);
+  }
+
   return (
     <BookContext.Provider
       value={{
         bookData,
         handleBookData,
         familyMembers,
-        setFamilyMembers: handleAddFamilyMember,
+        addFamilyMember,
+        removeFamilyMember,
         personalEvents,
-        setPersonalEvents: handleAddPersonalEvent,
+        addPersonalEvent,
+        removePersonalEvent,
       }}
     >
       {children}

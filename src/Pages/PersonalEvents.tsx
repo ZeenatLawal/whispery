@@ -7,19 +7,22 @@ import {
   List,
   ListItem,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { PageTitle } from "../components/PageTitle";
 import { BookContext } from "../contexts/BookContext";
 
 export function PersonalEvents() {
   const isSmallest = useMediaQuery("(max-width: 380px)");
   const [event, setEvent] = useState("");
-  const { personalEvents, setPersonalEvents } = useContext(BookContext);
+  const { personalEvents, addPersonalEvent, removePersonalEvent } =
+    useContext(BookContext);
 
   return (
     <Header pageNumber={3} path="/members">
@@ -89,7 +92,7 @@ export function PersonalEvents() {
             }}
             startIcon={<AddIcon sx={{ color: "#C665F3" }} fontSize="large" />}
             onClick={() => {
-              setPersonalEvents(event);
+              addPersonalEvent(event);
               setEvent("");
             }}
             disabled={personalEvents.length === 3}
@@ -103,7 +106,7 @@ export function PersonalEvents() {
                 fontSize: "16px",
               }}
             >
-              Voeg nog een gebeurtenis toe
+              Voeg deze gebeurtenis toe
             </div>
           </Button>
         </Grid>
@@ -118,12 +121,22 @@ export function PersonalEvents() {
               boxShadow: "inset 2px 2px 0 0 #8B7CF8, inset 0 0 2px 2px #ED65F3",
             }}
           >
-            <List component="ol">
+            <List>
               {personalEvents.map((event, index) => (
-                <ListItem key={index} component="li">
+                <ListItem
+                  key={index}
+                  style={{ justifyContent: "space-between" }}
+                >
                   <Typography>
                     <strong>{index + 1}. </strong> {event}
                   </Typography>
+                  <IconButton
+                    onClick={() => {
+                      removePersonalEvent(personalEvents[index]);
+                    }}
+                  >
+                    <DeleteIcon color="error" />
+                  </IconButton>
                 </ListItem>
               ))}
             </List>
