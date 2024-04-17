@@ -74,10 +74,9 @@ export function Summary() {
         >
           <Typography style={textStyle}>
             Als ik het goed begrijp wil je een boek laten maken voor{" "}
-            {bookData.firstName}, een
-            {bookData.gender} van {bookData.age}. {familySentence}. Het boek
-            krijgt een {bookData.theme} thema waarin de volgende persoonlijke
-            gebeurtenissen worden meegenomen:
+            {bookData.firstName}, een {bookData.gender} van {bookData.age}.{" "}
+            {familySentence}. Het boek krijgt een {bookData.theme} thema waarin
+            de volgende persoonlijke gebeurtenissen worden meegenomen:
           </Typography>
 
           <List>
