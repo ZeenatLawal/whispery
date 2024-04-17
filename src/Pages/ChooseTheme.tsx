@@ -68,11 +68,15 @@ export function ChooseTheme() {
   };
 
   useEffect(() => {
-    const getThemeIndex = images.findIndex(
-      (img) => img.caption === bookData.theme
-    );
-    setActiveIndex(getThemeIndex);
-  }, []);
+    if (bookData.theme !== "") {
+      const getThemeIndex = images.findIndex(
+        (img) => img.caption === bookData.theme
+      );
+      setActiveIndex(getThemeIndex);
+    } else {
+      setActiveIndex(0);
+    }
+  }, [bookData.theme]);
 
   useEffect(() => {
     // Scroll to the active theme when it changes
