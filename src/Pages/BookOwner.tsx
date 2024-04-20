@@ -7,19 +7,51 @@ import {
   Select,
   MenuItem,
   Chip,
+  Button,
+  Box,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
-import { useContext } from "react";
-import ownerImg from "../assets/ownerImg.png";
+import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { ContinueButton } from "../components/ContinueButton";
 import { PageTitle } from "../components/PageTitle";
 import { BookContext } from "../contexts/BookContext";
+import { apiFetch } from "../hooks/apiFetch";
 
 export function BookOwner() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isMidScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { bookData, handleBookData } = useContext(BookContext);
+  const [avatar, setAvatar] = useState(bookData.avatar);
+  const [loading, setLoading] = useState(false);
+
+  const dutchToEnglishMap: any = {
+    Meisje: "girl",
+    Jongen: "boy",
+    Licht: "light",
+    Medium: "medium",
+    Donker: "dark",
+    "Heel kort/kaal": "very short bald",
+    "Kort, stijl haar": "short straight",
+    "Kort, krullend haar": "short curly",
+    "Halflang, stijl haar": "medium length straight",
+    "Halflang, krullend haar": "medium length curly",
+    "Lang, stijl haar": "long straight",
+    "Lang, krullend haar": "long curly",
+    Blond: "blonde",
+    Bruin: "brown",
+    Rood: "red",
+    Blauw: "blue",
+    Groen: "green",
+    Nee: "false",
+    Ja: "true",
+  };
+
+  const translateToEnglish = (value: any) => {
+    return dutchToEnglishMap[value] || value;
+  };
 
   const menuItemStyle = {
     MenuProps: {
@@ -113,6 +145,7 @@ export function BookOwner() {
                       value={bookData.gender}
                       onChange={(e) => {
                         handleBookData("gender", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -136,6 +169,7 @@ export function BookOwner() {
                       value={bookData.skinColor}
                       onChange={(e) => {
                         handleBookData("skinColor", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -189,6 +223,7 @@ export function BookOwner() {
                       value={bookData.hairStyle}
                       onChange={(e) => {
                         handleBookData("hairStyle", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -229,6 +264,7 @@ export function BookOwner() {
                       value={bookData.hairColor}
                       onChange={(e) => {
                         handleBookData("hairColor", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -292,6 +328,7 @@ export function BookOwner() {
                       value={bookData.eyeColor}
                       onChange={(e) => {
                         handleBookData("eyeColor", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -343,6 +380,7 @@ export function BookOwner() {
                       value={bookData.glasses}
                       onChange={(e) => {
                         handleBookData("glasses", e.target.value);
+                        setAvatar(bookData.avatar);
                       }}
                       renderValue={(selected) => {
                         if (selected === "") {
@@ -366,19 +404,101 @@ export function BookOwner() {
                 height: isSmallScreen ? "446px" : "539px",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 marginTop: isMidScreen ? "80px" : "0",
               }}
             >
               <img
-                src={ownerImg}
+                src={avatar}
                 alt="3D illustration of a young boy"
                 style={{
-                  width: "100%",
-                  maxHeight: isSmallScreen ? "680px" : "960px",
+                  width: isSmallScreen ? "300px" : "400px",
+                  height: isSmallScreen ? "300px" : "400px",
                 }}
               />
             </div>
           </Grid>
+
+          <Box display="flex" width="100%" justifyContent="center">
+            <Button
+              variant="outlined"
+              sx={{
+                borderRadius: "31px",
+                boxShadow:
+                  "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
+                marginRight: "20px",
+                height: "50px",
+              }}
+              onClick={async () => {
+                setLoading(true);
+                const translatedFormData: any = {};
+                for (const key in bookData) {
+                  const value = bookData[key];
+                  translatedFormData[key] = translateToEnglish(value);
+                }
+
+                const res = await apiFetch<{ data: string }>({
+                  path: "/avatars",
+                  data: {
+                    gender: translatedFormData.gender,
+                    skinColor: translatedFormData.skinColor,
+                    hairStyle: translatedFormData.hairStyle,
+                    hairColor: translatedFormData.hairColor,
+                    eyeColor: translatedFormData.eyeColor,
+                    glasses: translatedFormData.glasses,
+                  },
+                });
+
+                setAvatar(res.data);
+                setLoading(false);
+              }}
+            >
+              <div
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  fontSize: "16px",
+                }}
+              >
+                Preview Image
+              </div>
+            </Button>
+            {avatar.length > 0 && avatar.startsWith("http") && (
+              <Button
+                variant="outlined"
+                sx={{
+                  borderRadius: "31px",
+                  boxShadow:
+                    "inset 1px 1px 0 0 #8B7CF8, inset 0 0 1px 1px #ED65F3",
+                  height: "50px",
+                }}
+                onClick={async () => {
+                  setLoading(true);
+                  const res = await apiFetch<{ data: string }>({
+                    path: "/avatars/regenerate",
+                    data: { imageUrl: avatar },
+                  });
+
+                  setAvatar(res.data);
+                  setLoading(false);
+                }}
+              >
+                <div
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #8B7CF8 0%, #ED65F3 85.48%)",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    fontSize: "16px",
+                  }}
+                >
+                  Regenerate
+                </div>
+              </Button>
+            )}
+          </Box>
         </Grid>
       </>
 
@@ -391,9 +511,20 @@ export function BookOwner() {
           path="/members"
           onClick={async () => {
             //send character details
+            handleBookData("avatar", avatar);
           }}
         />
       </Grid>
+
+      <Backdrop
+        sx={{ color: "#fff", zIndex: 1000 }}
+        open={loading}
+        onClick={() => {
+          setLoading(false);
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Header>
   );
 }

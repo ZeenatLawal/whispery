@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
+import ownerImg from "../assets/ownerImg.png";
 
-interface BookData {
+export interface BookData {
+  [key: string]: any;
   firstName: string;
   age: string;
   gender: string;
@@ -9,6 +11,7 @@ interface BookData {
   hairColor: string;
   eyeColor: string;
   glasses: string;
+  avatar: string;
   theme: string;
   personalMsg: string;
 }
@@ -32,6 +35,7 @@ export const BookContext = createContext<{
     hairColor: "",
     eyeColor: "",
     glasses: "",
+    avatar: ownerImg,
     theme: "",
     personalMsg: "",
   },
@@ -58,6 +62,7 @@ export function BookContextProvider({
     hairColor: "",
     eyeColor: "",
     glasses: "",
+    avatar: ownerImg,
     theme: "",
     personalMsg: "",
   });
