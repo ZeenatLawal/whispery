@@ -11,6 +11,7 @@ import { BookTypes } from "./Pages/BookTypes";
 import { ReactNode, useEffect } from "react";
 import { BillingInfo } from "./Pages/BillingInfo";
 import TagManager from "react-gtm-module";
+import { DigitalBook } from "./Pages/DigitalBook";
 
 const formBlack = "#131030CF";
 const formBorder = "#5256A9A6";
@@ -127,6 +128,7 @@ function App() {
             <Route path="/summary" element={<Summary />} />
             <Route path="/billing" element={<BillingInfo />} />
             <Route path="/bookTypes" element={<BookTypes />} />
+            <Route path="/mybook" element={<DigitalBook />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

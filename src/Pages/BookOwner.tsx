@@ -120,7 +120,7 @@ export function BookOwner() {
                       return `${selected} jaar`;
                     }}
                   >
-                    {[...Array(12)].map((_, index) => (
+                    {Array(12).map((_, index) => (
                       <MenuItem key={index + 1} value={index + 1}>
                         {index + 1}
                       </MenuItem>

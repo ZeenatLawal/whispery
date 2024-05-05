@@ -120,7 +120,8 @@ export function Summary() {
           }}
           onClick={async () => {
             // create book
-            navigate("/billing");
+            // navigate("/billing");
+            navigate("/mybook");
           }}
         >
           De gegevens kloppen
