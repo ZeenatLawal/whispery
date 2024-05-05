@@ -13,7 +13,8 @@ import playIcon from "../assets/playIcon.svg";
 import pauseIcon from "../assets/pauseIcon.svg";
 import musicOn from "../assets/musicOn.svg";
 import musicMute from "../assets/musicMute.svg";
-import { useState } from "react";
+import testAudio from "../assets/testAudio.mp3";
+import { useEffect, useRef, useState } from "react";
 import {
   SkipNextOutlined,
   SkipPreviousOutlined,
@@ -21,9 +22,27 @@ import {
 } from "@mui/icons-material";
 
 export function DigitalBook() {
-  const [play, setPlay] = useState(false);
-  const [music, setMusic] = useState(true);
-  const [volume, setVolume] = useState(50);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(30);
+  const audioRef = useRef(new Audio(testAudio));
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.loop = true;
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
+    audio.muted = isMuted;
+    audio.volume = volume / 100;
+
+    return () => {
+      audio.pause();
+    };
+  }, [isPlaying, isMuted, volume]);
 
   return (
     <Box
@@ -94,15 +113,15 @@ export function DigitalBook() {
           justifyContent="space-between"
         >
           <IconButton
-            onClick={() => setPlay(!play)}
+            onClick={() => setIsPlaying(!isPlaying)}
             sx={{
               paddingLeft: 0,
             }}
           >
-            {play ? (
-              <img src={playIcon} alt="playIcon" />
-            ) : (
+            {isPlaying ? (
               <img src={pauseIcon} alt="pauseIcon" />
+            ) : (
+              <img src={playIcon} alt="playIcon" />
             )}
           </IconButton>
 
@@ -124,15 +143,15 @@ export function DigitalBook() {
             </IconButton>
 
             <IconButton
-              onClick={() => setMusic(!music)}
+              onClick={() => setIsMuted(!isMuted)}
               sx={{
                 marginX: "52px",
               }}
             >
-              {music ? (
+              {isMuted ? (
                 <img
-                  src={musicOn}
-                  alt="musicOn"
+                  src={musicMute}
+                  alt="musicMute"
                   style={{
                     height: "38px",
                     width: "38px",
@@ -140,8 +159,8 @@ export function DigitalBook() {
                 />
               ) : (
                 <img
-                  src={musicMute}
-                  alt="musicMute"
+                  src={musicOn}
+                  alt="musicOn"
                   style={{
                     height: "38px",
                     width: "38px",
