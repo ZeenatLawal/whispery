@@ -18,6 +18,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-gtm-module": "latest",
+    "react-pageflip": "^2.0.3",
     "react-router-dom": "latest",
     "react-scripts": "latest",
     "typescript": "latest",

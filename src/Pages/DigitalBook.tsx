@@ -9,6 +9,7 @@ import {
   Slider,
   Menu,
   MenuItem,
+  Button,
 } from "@mui/material";
 import Logo from "../assets/logo.png";
 import playIcon from "../assets/playIcon.svg";
@@ -19,12 +20,13 @@ import Lichtbetovering from "../assets/bgSounds/Lichtbetovering.mp3";
 import Nachtfluistering from "../assets/bgSounds/Nachtfluistering.mp3";
 import Spreukenkunst from "../assets/bgSounds/Spreukenkunst.mp3";
 import Sterrenstof from "../assets/bgSounds/Sterrenstof.mp3";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import {
   SkipNextOutlined,
   SkipPreviousOutlined,
   VolumeDownOutlined,
 } from "@mui/icons-material";
+import HTMLFlipBook from "react-pageflip";
 
 const mp3List = [
   { label: "Droomvlucht", music: Droomvlucht },
@@ -85,28 +87,44 @@ export function DigitalBook() {
       </AppBar>
 
       <Box margin="135px auto 0">
-        <Box display="flex" height="750px" marginBottom="30px">
-          <Box
-            width="620px"
-            sx={{
-              background: "#FFF",
-            }}
-          ></Box>
-          <Divider
-            sx={{
-              height: "100%",
-              width: "2px",
-              background:
-                "linear-gradient(90deg, #1F1F1F 0%, rgba(196, 196, 196, 0) 100%)",
-            }}
-          />
-          <Box
-            width="620px"
-            sx={{
-              background: "antiquewhite",
-            }}
-          ></Box>
-        </Box>
+        <FlipBook
+          pages={Array(10)
+            .fill("")
+            .map((_, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "650px",
+                  height: "750px",
+                  background: "#FFF",
+                  padding: "20px",
+                }}
+              >
+                <Typography
+                  variant="h1"
+                  sx={{
+                    color: "#000",
+                  }}
+                >
+                  Page {index + 1}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "#000",
+                    marginTop: "20px",
+                  }}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Placeat, ipsam fugit. Velit, atque vero iure saepe, optio
+                  error sunt officiis reprehenderit quaerat ipsum nesciunt modi
+                  deleniti iusto repudiandae, enim quae!
+                </Typography>
+              </Box>
+            ))}
+        />
 
         <LinearProgress
           variant="determinate"
@@ -270,3 +288,45 @@ export function DigitalBook() {
     </Box>
   );
 }
+
+const FlipBook = ({ pages }: { pages: ReactNode[] }) => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
+  return (
+    // <Box className={isFullScreen ? "full-screen" : ""}>
+    //   <Button onClick={toggleFullScreen}>Toggle Fullscreen</Button>
+    <HTMLFlipBook
+      width={650}
+      minWidth={650}
+      maxWidth={650}
+      height={750}
+      minHeight={750}
+      maxHeight={750}
+      className="page-flip-container"
+      style={{ background: "#FFF", marginBottom: "30px" }}
+      showCover
+      drawShadow
+      mobileScrollSupport
+      size="fixed"
+      flippingTime={1000}
+      usePortrait={false}
+      startZIndex={0}
+      autoSize
+      maxShadowOpacity={1}
+      swipeDistance={50}
+      clickEventForward
+      useMouseEvents
+      renderOnlyPageLengthChange
+      showPageCorners
+      startPage={0}
+      disableFlipByClick={false}
+    >
+      {pages}
+    </HTMLFlipBook>
+    // </Box>
+  );
+};
