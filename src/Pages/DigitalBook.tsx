@@ -7,13 +7,18 @@ import {
   IconButton,
   Typography,
   Slider,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import Logo from "../assets/logo.png";
 import playIcon from "../assets/playIcon.svg";
 import pauseIcon from "../assets/pauseIcon.svg";
 import musicOn from "../assets/musicOn.svg";
-import musicMute from "../assets/musicMute.svg";
-import testAudio from "../assets/testAudio.mp3";
+import Droomvlucht from "../assets/bgSounds/Droomvlucht.mp3";
+import Lichtbetovering from "../assets/bgSounds/Lichtbetovering.mp3";
+import Nachtfluistering from "../assets/bgSounds/Nachtfluistering.mp3";
+import Spreukenkunst from "../assets/bgSounds/Spreukenkunst.mp3";
+import Sterrenstof from "../assets/bgSounds/Sterrenstof.mp3";
 import { useEffect, useRef, useState } from "react";
 import {
   SkipNextOutlined,
@@ -21,14 +26,24 @@ import {
   VolumeDownOutlined,
 } from "@mui/icons-material";
 
+const mp3List = [
+  { label: "Droomvlucht", music: Droomvlucht },
+  { label: "Lichtbetovering", music: Lichtbetovering },
+  { label: "Nachtfluistering", music: Nachtfluistering },
+  { label: "Spreukenkunst", music: Spreukenkunst },
+  { label: "Sterrenstof", music: Sterrenstof },
+];
+
 export function DigitalBook() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [selectedMp3, setSelectedMp3] = useState(mp3List[0].music);
+  const [openList, setOpenList] = useState<HTMLElement | null>(null);
   const [volume, setVolume] = useState(30);
-  const audioRef = useRef(new Audio(testAudio));
+  let audioRef = useRef(new Audio(selectedMp3));
 
   useEffect(() => {
     const audio = audioRef.current;
+    audio.src = selectedMp3;
     audio.loop = true;
     if (isPlaying) {
       audio.play();
@@ -36,13 +51,12 @@ export function DigitalBook() {
       audio.pause();
     }
 
-    audio.muted = isMuted;
     audio.volume = volume / 100;
 
     return () => {
       audio.pause();
     };
-  }, [isPlaying, isMuted, volume]);
+  }, [isPlaying, selectedMp3, volume]);
 
   return (
     <Box
@@ -143,30 +157,19 @@ export function DigitalBook() {
             </IconButton>
 
             <IconButton
-              onClick={() => setIsMuted(!isMuted)}
+              onClick={(e) => setOpenList(e.currentTarget)}
               sx={{
                 marginX: "52px",
               }}
             >
-              {isMuted ? (
-                <img
-                  src={musicMute}
-                  alt="musicMute"
-                  style={{
-                    height: "38px",
-                    width: "38px",
-                  }}
-                />
-              ) : (
-                <img
-                  src={musicOn}
-                  alt="musicOn"
-                  style={{
-                    height: "38px",
-                    width: "38px",
-                  }}
-                />
-              )}
+              <img
+                src={musicOn}
+                alt="musicOn"
+                style={{
+                  height: "38px",
+                  width: "38px",
+                }}
+              />
             </IconButton>
 
             <IconButton>
@@ -218,6 +221,52 @@ export function DigitalBook() {
           </Box>
         </Box>
       </Box>
+
+      <Menu
+        id="music-menu"
+        keepMounted
+        anchorEl={openList}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={Boolean(openList)}
+        onClose={() => setOpenList(null)}
+        MenuListProps={{
+          sx: {
+            backgroundColor: "#131030",
+            width: "150px",
+            height: "200px",
+            overflowY: "auto",
+            padding: 0,
+            margin: 0,
+          },
+        }}
+      >
+        {mp3List.map(({ label, music }, index) => (
+          <MenuItem
+            key={index}
+            value={label}
+            onClick={() => {
+              setOpenList(null);
+              setSelectedMp3(music);
+              setIsPlaying(true);
+            }}
+            sx={{
+              fontWeight: 500,
+              fontSize: { xs: "10px", md: "14px" },
+              minHeight: "40px",
+              padding: "8px 16px",
+            }}
+          >
+            {label}
+          </MenuItem>
+        ))}
+      </Menu>
     </Box>
   );
 }
