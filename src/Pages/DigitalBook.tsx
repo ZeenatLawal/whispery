@@ -2,9 +2,8 @@ import {
   AppBar,
   Toolbar,
   Box,
-  LinearProgress,
+  // LinearProgress,
   IconButton,
-  Typography,
   Slider,
   Menu,
   MenuItem,
@@ -21,11 +20,7 @@ import Nachtfluistering from "../assets/bgSounds/Nachtfluistering.mp3";
 import Spreukenkunst from "../assets/bgSounds/Spreukenkunst.mp3";
 import Sterrenstof from "../assets/bgSounds/Sterrenstof.mp3";
 import { useEffect, useRef, useState } from "react";
-import {
-  SkipNextOutlined,
-  SkipPreviousOutlined,
-  VolumeDownOutlined,
-} from "@mui/icons-material";
+import { VolumeDownOutlined } from "@mui/icons-material";
 import { FlipBook } from "../components/FlipBook";
 
 const mp3List = [
@@ -67,6 +62,7 @@ export function DigitalBook() {
       style={{
         display: "flex",
         backgroundColor: "#141122",
+        minHeight: "100vh",
       }}
     >
       <AppBar
@@ -89,8 +85,19 @@ export function DigitalBook() {
       </AppBar>
 
       <Box margin="135px auto 0" position="relative">
-        <FlipBook />
-        <LinearProgress
+        <Box
+          width="100%"
+          display="flex"
+          justifyContent="center"
+          flexDirection="column"
+          alignItems="center"
+          sx={{
+            overflow: "hidden",
+          }}
+        >
+          <FlipBook />
+        </Box>
+        {/* <LinearProgress
           variant="determinate"
           value={75}
           sx={{
@@ -100,7 +107,7 @@ export function DigitalBook() {
               backgroundColor: "#FFF",
             },
           }}
-        />
+        /> */}
 
         <Box
           height="50px"
@@ -122,22 +129,6 @@ export function DigitalBook() {
           </IconButton>
 
           <Box display="flex" alignItems="center" margin="0 240px 0 300px">
-            <IconButton>
-              <SkipPreviousOutlined
-                sx={{
-                  color: "#FFF",
-                }}
-              />
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  marginLeft: "10px",
-                }}
-              >
-                Previous Page
-              </Typography>
-            </IconButton>
-
             <IconButton
               onClick={(e) => setOpenList(e.currentTarget)}
               sx={{
@@ -150,22 +141,6 @@ export function DigitalBook() {
                 style={{
                   height: "38px",
                   width: "38px",
-                }}
-              />
-            </IconButton>
-
-            <IconButton>
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  marginRight: "10px",
-                }}
-              >
-                Next Page
-              </Typography>
-              <SkipNextOutlined
-                sx={{
-                  color: "#FFF",
                 }}
               />
             </IconButton>
