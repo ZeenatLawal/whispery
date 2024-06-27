@@ -2,14 +2,14 @@ import {
   AppBar,
   Toolbar,
   Box,
-  Divider,
   LinearProgress,
   IconButton,
   Typography,
   Slider,
   Menu,
   MenuItem,
-  Button,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import Logo from "../assets/logo.png";
 import playIcon from "../assets/playIcon.svg";
@@ -20,13 +20,13 @@ import Lichtbetovering from "../assets/bgSounds/Lichtbetovering.mp3";
 import Nachtfluistering from "../assets/bgSounds/Nachtfluistering.mp3";
 import Spreukenkunst from "../assets/bgSounds/Spreukenkunst.mp3";
 import Sterrenstof from "../assets/bgSounds/Sterrenstof.mp3";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   SkipNextOutlined,
   SkipPreviousOutlined,
   VolumeDownOutlined,
 } from "@mui/icons-material";
-import HTMLFlipBook from "react-pageflip";
+import { FlipBook } from "../components/FlipBook";
 
 const mp3List = [
   { label: "Droomvlucht", music: Droomvlucht },
@@ -37,6 +37,8 @@ const mp3List = [
 ];
 
 export function DigitalBook() {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedMp3, setSelectedMp3] = useState(mp3List[0].music);
   const [openList, setOpenList] = useState<HTMLElement | null>(null);
@@ -64,68 +66,30 @@ export function DigitalBook() {
     <Box
       style={{
         display: "flex",
-        backgroundColor: "#0D0B22",
-        width: "100%",
-        height: "100vh",
+        backgroundColor: "#141122",
       }}
     >
       <AppBar
         position="fixed"
         style={{
-          background: "none",
+          height: mobile ? "107px" : "121px",
+          background: "inherit",
           alignItems: "center",
         }}
         elevation={0}
       >
         <Toolbar
           style={{
-            marginTop: "30px",
+            margin: "15px",
+            padding: "0",
           }}
         >
           <img src={Logo} alt="Logo" style={{ height: "70px" }} />
         </Toolbar>
       </AppBar>
 
-      <Box margin="135px auto 0">
-        <FlipBook
-          pages={Array(10)
-            .fill("")
-            .map((_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "650px",
-                  height: "750px",
-                  background: "#FFF",
-                  padding: "20px",
-                }}
-              >
-                <Typography
-                  variant="h1"
-                  sx={{
-                    color: "#000",
-                  }}
-                >
-                  Page {index + 1}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "#000",
-                    marginTop: "20px",
-                  }}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, ipsam fugit. Velit, atque vero iure saepe, optio
-                  error sunt officiis reprehenderit quaerat ipsum nesciunt modi
-                  deleniti iusto repudiandae, enim quae!
-                </Typography>
-              </Box>
-            ))}
-        />
-
+      <Box margin="135px auto 0" position="relative">
+        <FlipBook />
         <LinearProgress
           variant="determinate"
           value={75}
@@ -239,6 +203,7 @@ export function DigitalBook() {
           </Box>
         </Box>
       </Box>
+      {/* </Grid> */}
 
       <Menu
         id="music-menu"
@@ -288,45 +253,3 @@ export function DigitalBook() {
     </Box>
   );
 }
-
-const FlipBook = ({ pages }: { pages: ReactNode[] }) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  const toggleFullScreen = () => {
-    setIsFullScreen(!isFullScreen);
-  };
-
-  return (
-    // <Box className={isFullScreen ? "full-screen" : ""}>
-    //   <Button onClick={toggleFullScreen}>Toggle Fullscreen</Button>
-    <HTMLFlipBook
-      width={650}
-      minWidth={650}
-      maxWidth={650}
-      height={750}
-      minHeight={750}
-      maxHeight={750}
-      className="page-flip-container"
-      style={{ background: "#FFF", marginBottom: "30px" }}
-      showCover
-      drawShadow
-      mobileScrollSupport
-      size="fixed"
-      flippingTime={1000}
-      usePortrait={false}
-      startZIndex={0}
-      autoSize
-      maxShadowOpacity={1}
-      swipeDistance={50}
-      clickEventForward
-      useMouseEvents
-      renderOnlyPageLengthChange
-      showPageCorners
-      startPage={0}
-      disableFlipByClick={false}
-    >
-      {pages}
-    </HTMLFlipBook>
-    // </Box>
-  );
-};
