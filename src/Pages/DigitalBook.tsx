@@ -97,17 +97,6 @@ export function DigitalBook() {
         >
           <FlipBook />
         </Box>
-        {/* <LinearProgress
-          variant="determinate"
-          value={75}
-          sx={{
-            height: "7px",
-            backgroundColor: "#443C64",
-            "& .MuiLinearProgress-bar1Determinate": {
-              backgroundColor: "#FFF",
-            },
-          }}
-        /> */}
 
         <Box
           height="50px"
@@ -119,40 +108,67 @@ export function DigitalBook() {
             onClick={() => setIsPlaying(!isPlaying)}
             sx={{
               paddingLeft: 0,
+              width: { md: "150px" },
+              display: "flex",
+              justifyContent: "flex-start",
             }}
           >
             {isPlaying ? (
-              <img src={pauseIcon} alt="pauseIcon" />
+              <img
+                src={pauseIcon}
+                alt="pauseIcon"
+                style={{
+                  height: mobile ? "28px" : "38px",
+                  width: mobile ? "28px" : "38px",
+                }}
+              />
             ) : (
-              <img src={playIcon} alt="playIcon" />
+              <img
+                src={playIcon}
+                alt="playIcon"
+                style={{
+                  height: mobile ? "28px" : "38px",
+                  width: mobile ? "28px" : "38px",
+                }}
+              />
             )}
           </IconButton>
 
-          <Box display="flex" alignItems="center" margin="0 240px 0 300px">
-            <IconButton
-              onClick={(e) => setOpenList(e.currentTarget)}
-              sx={{
-                marginX: "52px",
+          <IconButton
+            onClick={(e) => setOpenList(e.currentTarget)}
+            sx={{
+              width: { md: "150px" },
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={musicOn}
+              alt="musicOn"
+              style={{
+                height: mobile ? "28px" : "38px",
+                width: mobile ? "28px" : "38px",
               }}
-            >
-              <img
-                src={musicOn}
-                alt="musicOn"
-                style={{
-                  height: "38px",
-                  width: "38px",
-                }}
-              />
-            </IconButton>
-          </Box>
+            />
+          </IconButton>
 
-          <Box display="flex" alignItems="center" width="150px">
+          <Box
+            display="flex"
+            alignItems="center"
+            width={{ md: "150px" }}
+            position="relative"
+          >
             <VolumeDownOutlined />
             <Slider
               aria-label="Volume"
               value={volume}
               onChange={(e, newVolume) => {
                 setVolume(newVolume as number);
+              }}
+              orientation={mobile ? "vertical" : "horizontal"}
+              sx={{
+                position: { xs: "absolute", md: "relative" },
+                display: { xs: "none", md: "flex" },
               }}
               slotProps={{
                 track: {
@@ -178,7 +194,6 @@ export function DigitalBook() {
           </Box>
         </Box>
       </Box>
-      {/* </Grid> */}
 
       <Menu
         id="music-menu"

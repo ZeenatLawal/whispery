@@ -18,11 +18,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export function FlipBook() {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(0);
   const flipBookRef = useRef(null);
 
-  const onDocumentLoadSuccess = ({ numPages }: { numPages: any }) => {
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
@@ -34,12 +34,17 @@ export function FlipBook() {
             {mobile ? (
               // @ts-ignore
               <HTMLFlipBook
-                width={375}
-                height={375}
-                showCover={true}
+                autoSize
+                width={350}
+                height={350}
+                showCover
                 maxShadowOpacity={0.5}
                 usePortrait={true}
                 mobileScrollSupport={true}
+                onFlip={(e) => {
+                  setPage(e.data);
+                }}
+                ref={flipBookRef}
               >
                 {Array.from(new Array(numPages), (el, index) => (
                   <Box
@@ -49,11 +54,11 @@ export function FlipBook() {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "375px",
-                      height: "375px",
+                      width: "350px",
+                      height: "350px",
                     }}
                   >
-                    <Page pageNumber={index + 1} width={375} />
+                    <Page pageNumber={index + 1} width={350} />
                   </Box>
                 ))}
               </HTMLFlipBook>
@@ -87,7 +92,7 @@ export function FlipBook() {
       <Box
         display="flex"
         alignItems="center"
-        width="50%"
+        width={{ md: "50%" }}
         justifyContent="space-between"
         marginTop="20px"
       >
@@ -99,31 +104,31 @@ export function FlipBook() {
           />
           <Typography
             sx={{
-              fontSize: "20px",
+              fontSize: { xs: "14px", md: "20px" },
               marginLeft: "10px",
             }}
           >
-            Previous Page
+            Previous
           </Typography>
         </IconButton>
 
         <Typography
           sx={{
-            fontSize: "20px",
-            marginLeft: "10px",
+            fontSize: { xs: "14px", md: "20px" },
+            marginX: "20px",
           }}
         >
-          {page} of {numPages}
+          {page} of {numPages > 0 ? numPages - 1 : 0}
         </Typography>
 
         <IconButton>
           <Typography
             sx={{
-              fontSize: "20px",
+              fontSize: { xs: "14px", md: "20px" },
               marginRight: "10px",
             }}
           >
-            Next Page
+            Next
           </Typography>
           <SkipNextOutlined
             sx={{
