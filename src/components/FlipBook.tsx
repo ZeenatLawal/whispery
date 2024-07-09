@@ -20,7 +20,7 @@ export function FlipBook() {
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(0);
-  const flipBookRef = useRef(null);
+  const flipBookRef = useRef<any>(null);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -96,7 +96,13 @@ export function FlipBook() {
         justifyContent="space-between"
         marginTop="20px"
       >
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            if (flipBookRef.current) {
+              flipBookRef.current.pageFlip().flipPrev();
+            }
+          }}
+        >
           <SkipPreviousOutlined
             sx={{
               color: "#FFF",
@@ -121,7 +127,13 @@ export function FlipBook() {
           {page} of {numPages > 0 ? numPages - 1 : 0}
         </Typography>
 
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            if (flipBookRef.current) {
+              flipBookRef.current.pageFlip().flipNext();
+            }
+          }}
+        >
           <Typography
             sx={{
               fontSize: { xs: "14px", md: "20px" },
